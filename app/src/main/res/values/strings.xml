@@ -1,0 +1,90 @@
+<resources>
+    <string name="app_name">Vocabulary Assistant</string>
+    <string name="action_settings">Settings</string>
+    <string name="prompt_email">E-mail</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="action_sign_in">Log in</string>
+    <string name="content_singup">No account yet? Create one</string>
+    <string name="error_field_required">This field is required.</string>
+    <string name="error_invalid_email">The email address is invalid.</string>
+    <string name="error_password_length">Must between 6 and 16 characters</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="content_login">Have account? Log in</string>
+    <string name="prompt_name">Nick name</string>
+    <string name="error_invalid_name">The filed can only cotains alphabet and space blank</string>
+    <string name="title_activity_test1">test1</string>
+    <string name="GRE">GRE</string>
+    <string name="logo">logo</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="about">Vocabulary Assistant is an Android application to help Chinese student memorize English vocabulary for English test such as IETLS, GRE and TOEFL.</string>
+    <string name="us">This is a group project from module CSE208. We are Group 15: Mi Li (1302197) and Qinghe Li (1301872). Even though there are just two people in working, we can complete the project smoothly because of our tacit cooperation. By almost daily meeting, several times integration and debugging, we could finish the Android application as this version.</string>
+    <string name="thanks">Thanks for your installation and support. Welcome the trail "Vocabulary Assistant" to provide your valuable comments or suggestions.</string>
+
+        <string name="connect1">
+        Mi Li (1302197)
+        E-mail: Mi.Li13@student.xjtlu.edu.cn</string>
+            <string name="connect2">
+        Qinghe Li (1301872)
+        E-mail: Qinghe.Li13@student.xjtlu.edu.cn</string>
+</resources>

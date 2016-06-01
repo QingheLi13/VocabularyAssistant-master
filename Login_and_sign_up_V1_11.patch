@@ -1,0 +1,3674 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision )
++++ app/build.gradle	(revision )
+@@ -0,0 +1,28 @@
++apply plugin: 'com.android.application'
++
++android {
++    compileSdkVersion 23
++    buildToolsVersion "23.0.2"
++
++    defaultConfig {
++        applicationId "com.limi.andorid.vocabularyassistant"
++        minSdkVersion 15
++        targetSdkVersion 23
++        versionCode 1
++        versionName "1.0"
++    }
++    buildTypes {
++        release {
++            minifyEnabled false
++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
++        }
++    }
++}
++
++dependencies {
++    compile fileTree(dir: 'libs', include: ['*.jar'])
++    testCompile 'junit:junit:4.12'
++    compile 'com.android.support:appcompat-v7:23.2.0'
++    compile 'com.android.support:design:23.2.0'
++    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
++}
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision )
++++ build.gradle	(revision )
+@@ -0,0 +1,23 @@
++// Top-level build file where you can add configuration options common to all sub-projects/modules.
++
++buildscript {
++    repositories {
++        jcenter()
++    }
++    dependencies {
++        classpath 'com.android.tools.build:gradle:1.5.0'
++
++        // NOTE: Do not place your application dependencies here; they belong
++        // in the individual module build.gradle files
++    }
++}
++
++allprojects {
++    repositories {
++        jcenter()
++    }
++}
++
++task clean(type: Delete) {
++    delete rootProject.buildDir
++}
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision )
++++ .idea/misc.xml	(revision )
+@@ -0,0 +1,46 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="EntryPointsManager">
++    <entry_points version="2.0" />
++  </component>
++  <component name="NullableNotNullManager">
++    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
++    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
++    <option name="myNullables">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
++        </list>
++      </value>
++    </option>
++    <option name="myNotNulls">
++      <value>
++        <list size="4">
++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
++        </list>
++      </value>
++    </option>
++  </component>
++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
++    <OptionsSetting value="true" id="Add" />
++    <OptionsSetting value="true" id="Remove" />
++    <OptionsSetting value="true" id="Checkout" />
++    <OptionsSetting value="true" id="Update" />
++    <OptionsSetting value="true" id="Status" />
++    <OptionsSetting value="true" id="Edit" />
++    <ConfirmationsSetting value="0" id="Add" />
++    <ConfirmationsSetting value="0" id="Remove" />
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/build/classes" />
++  </component>
++  <component name="ProjectType">
++    <option name="id" value="Android" />
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java	(revision )
++++ app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java	(revision )
+@@ -0,0 +1,42 @@
++package com.limi.andorid.vocabularyassistant;
++
++import java.util.ArrayList;
++import java.util.Iterator;
++
++/**
++ * Created by limi on 16/3/22.
++ */
++public class Account {
++
++    private String email;
++    private String password;
++    private int id;
++    private static int lastID=0;
++    private static ArrayList<Account> accountArrayList;
++
++
++    public Account(String email,String password){
++        this.email=email;
++        this.password=password;
++        id=++lastID;
++        accountArrayList.add(this);
++    }
++
++    public ArrayList<Account> getAccoutList(){
++        return accountArrayList;
++
++    }
++
++    public static boolean match(String email,String password){
++        Iterator<Account> iterator;
++        iterator=accountArrayList.listIterator();
++        while(iterator.hasNext()){
++            Account ac= iterator.next();
++            if (ac.email.equalsIgnoreCase(email)&&ac.password.equals(password)){
++                return true;
++            }
++
++        }
++        return false;
++    }
++}
+Index: gradlew.bat
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew.bat	(revision )
++++ gradlew.bat	(revision )
+@@ -0,0 +1,90 @@
++@if "%DEBUG%" == "" @echo off
++@rem ##########################################################################
++@rem
++@rem  Gradle startup script for Windows
++@rem
++@rem ##########################################################################
++
++@rem Set local scope for the variables with windows NT shell
++if "%OS%"=="Windows_NT" setlocal
++
++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++set DEFAULT_JVM_OPTS=
++
++set DIRNAME=%~dp0
++if "%DIRNAME%" == "" set DIRNAME=.
++set APP_BASE_NAME=%~n0
++set APP_HOME=%DIRNAME%
++
++@rem Find java.exe
++if defined JAVA_HOME goto findJavaFromJavaHome
++
++set JAVA_EXE=java.exe
++%JAVA_EXE% -version >NUL 2>&1
++if "%ERRORLEVEL%" == "0" goto init
++
++echo.
++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:findJavaFromJavaHome
++set JAVA_HOME=%JAVA_HOME:"=%
++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
++
++if exist "%JAVA_EXE%" goto init
++
++echo.
++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
++echo.
++echo Please set the JAVA_HOME variable in your environment to match the
++echo location of your Java installation.
++
++goto fail
++
++:init
++@rem Get command-line arguments, handling Windowz variants
++
++if not "%OS%" == "Windows_NT" goto win9xME_args
++if "%@eval[2+2]" == "4" goto 4NT_args
++
++:win9xME_args
++@rem Slurp the command line arguments.
++set CMD_LINE_ARGS=
++set _SKIP=2
++
++:win9xME_args_slurp
++if "x%~1" == "x" goto execute
++
++set CMD_LINE_ARGS=%*
++goto execute
++
++:4NT_args
++@rem Get arguments from the 4NT Shell from JP Software
++set CMD_LINE_ARGS=%$
++
++:execute
++@rem Setup the command line
++
++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
++
++@rem Execute Gradle
++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
++
++:end
++@rem End local scope for the variables with windows NT shell
++if "%ERRORLEVEL%"=="0" goto mainEnd
++
++:fail
++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
++rem the _cmd.exe /c_ return code!
++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
++exit /b 1
++
++:mainEnd
++if "%OS%"=="Windows_NT" endlocal
++
++:omega
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/runConfigurations.xml	(revision )
++++ .idea/runConfigurations.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RunConfigurationProducerService">
++    <option name="ignoredProducers">
++      <set>
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
++      </set>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java	(revision )
++++ app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java	(revision )
+@@ -0,0 +1,32 @@
++package com.limi.andorid.vocabularyassistant;
++
++import android.content.Intent;
++import android.os.Bundle;
++import android.support.design.widget.FloatingActionButton;
++import android.support.design.widget.Snackbar;
++import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.Toolbar;
++import android.view.View;
++
++public class MainActivity extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main);
++        Intent intent = new Intent(this, LoginActivity.class);
++        startActivity(intent);
++        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
++        setSupportActionBar(toolbar);
++
++        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
++        fab.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View view) {
++                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
++                        .setAction("Action", null).show();
++            }
++        });
++    }
++
++}
+Index: app/src/main/res/layout/content_sign_up.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_sign_up.xml	(revision )
++++ app/src/main/res/layout/content_sign_up.xml	(revision )
+@@ -0,0 +1,84 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    android:layout_width="fill_parent"
++    android:layout_height="fill_parent"
++    android:fitsSystemWindows="true">
++
++    <LinearLayout
++        android:orientation="vertical"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:paddingTop="56dp"
++        android:paddingLeft="24dp"
++        android:paddingRight="24dp">
++
++        <!--<ImageView android:src="@drawable/logo"-->
++        <!--android:layout_width="wrap_content"-->
++        <!--android:layout_height="72dp"-->
++        <!--android:layout_marginBottom="24dp"-->
++        <!--android:layout_gravity="center_horizontal" />-->
++
++        <!-- Name Label -->
++        <android.support.design.widget.TextInputLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="8dp"
++            android:layout_marginBottom="8dp">
++            <EditText android:id="@+id/input_name"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:inputType="textEmailAddress"
++                android:singleLine="true"
++                android:hint="@string/prompt_name"
++                android:background="@drawable/login_edit"/>
++        </android.support.design.widget.TextInputLayout>
++
++        <!-- Email Label -->
++        <android.support.design.widget.TextInputLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="8dp"
++            android:layout_marginBottom="8dp">
++            <EditText android:id="@+id/input_email"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:inputType="textEmailAddress"
++                android:singleLine="true"
++                android:hint="@string/prompt_email"
++                android:background="@drawable/login_edit"/>
++        </android.support.design.widget.TextInputLayout>
++
++        <!-- Password Label -->
++        <android.support.design.widget.TextInputLayout
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="8dp"
++            android:layout_marginBottom="8dp">
++            <EditText android:id="@+id/input_password"
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:inputType="textPassword"
++                android:hint="@string/prompt_password"
++                android:singleLine="true"
++                android:background="@drawable/login_edit"/>
++        </android.support.design.widget.TextInputLayout>
++
++        <android.support.v7.widget.AppCompatButton
++            android:id="@+id/btn_sign_up"
++            android:layout_width="fill_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginTop="24dp"
++            android:layout_marginBottom="24dp"
++            android:padding="12dp"
++            android:text="@string/action_sign_up"/>
++
++        <TextView android:id="@+id/link_login"
++            android:layout_width="fill_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="24dp"
++            android:text="@string/content_login"
++            android:gravity="center"
++            android:textSize="16sp"/>
++
++    </LinearLayout>
++</ScrollView>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login.xml	(revision )
++++ app/src/main/res/layout/activity_login.xml	(revision )
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fitsSystemWindows="true"
++    tools:context="com.limi.andorid.vocabularyassistant.LoginActivity">
++
++    <android.support.design.widget.AppBarLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:theme="@style/AppTheme.AppBarOverlay">
++
++
++    </android.support.design.widget.AppBarLayout>
++
++    <include layout="@layout/content_login" />
++
++
++</android.support.design.widget.CoordinatorLayout>
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision )
++++ .idea/gradle.xml	(revision )
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="distributionType" value="LOCAL" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.8" />
++        <option name="gradleJvm" value="1.8" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision )
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -0,0 +1,34 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fitsSystemWindows="true"
++    tools:context="com.limi.andorid.vocabularyassistant.MainActivity">
++
++    <android.support.design.widget.AppBarLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:theme="@style/AppTheme.AppBarOverlay">
++
++        <android.support.v7.widget.Toolbar
++            android:id="@+id/toolbar"
++            android:layout_width="match_parent"
++            android:layout_height="?attr/actionBarSize"
++            android:background="?attr/colorPrimary"
++            app:popupTheme="@style/AppTheme.PopupOverlay" />
++
++    </android.support.design.widget.AppBarLayout>
++
++    <include layout="@layout/content_main" />
++
++    <android.support.design.widget.FloatingActionButton
++        android:id="@+id/fab"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_gravity="bottom|end"
++        android:layout_margin="@dimen/fab_margin"
++        android:src="@android:drawable/ic_dialog_email" />
++
++</android.support.design.widget.CoordinatorLayout>
+Index: app/src/main/res/layout/content_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_login.xml	(revision )
++++ app/src/main/res/layout/content_login.xml	(revision )
+@@ -0,0 +1,71 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++android:layout_width="fill_parent"
++android:layout_height="fill_parent"
++android:fitsSystemWindows="true">
++
++<LinearLayout
++    android:orientation="vertical"
++    android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:paddingTop="56dp"
++    android:paddingLeft="24dp"
++    android:paddingRight="24dp">
++
++    <!--<ImageView android:src="@drawable/logo"-->
++    <!--android:layout_width="wrap_content"-->
++    <!--android:layout_height="72dp"-->
++    <!--android:layout_marginBottom="24dp"-->
++    <!--android:layout_gravity="center_horizontal" />-->
++
++
++
++    <!-- Email Label -->
++    <android.support.design.widget.TextInputLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:layout_marginBottom="8dp">
++        <EditText android:id="@+id/input_email"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:inputType="textEmailAddress"
++            android:singleLine="true"
++            android:hint="@string/prompt_email"
++            android:background="@drawable/login_edit"/>
++    </android.support.design.widget.TextInputLayout>
++
++    <!-- Password Label -->
++    <android.support.design.widget.TextInputLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="8dp"
++        android:layout_marginBottom="8dp">
++        <EditText android:id="@+id/input_password"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:inputType="textPassword"
++            android:hint="@string/prompt_password"
++            android:singleLine="true"
++            android:background="@drawable/login_edit"/>
++    </android.support.design.widget.TextInputLayout>
++
++    <android.support.v7.widget.AppCompatButton
++        android:id="@+id/btn_login"
++        android:layout_width="fill_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="24dp"
++        android:layout_marginBottom="24dp"
++        android:padding="12dp"
++        android:text="@string/action_sign_in"/>
++
++    <TextView android:id="@+id/link_signup"
++        android:layout_width="fill_parent"
++        android:layout_height="wrap_content"
++        android:layout_marginBottom="24dp"
++        android:text="@string/content_singup"
++        android:gravity="center"
++        android:textSize="16sp"/>
++
++</LinearLayout>
++</ScrollView>
+Index: app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java	(revision )
++++ app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java	(revision )
+@@ -0,0 +1,15 @@
++package com.limi.andorid.vocabularyassistant;
++
++import org.junit.Test;
++
++import static org.junit.Assert.*;
++
++/**
++ * To work on unit tests, switch the Test Artifact in the Build Variants view.
++ */
++public class ExampleUnitTest {
++    @Test
++    public void addition_isCorrect() throws Exception {
++        assertEquals(4, 2 + 2);
++    }
++}
+\ No newline at end of file
+Index: .idea/dictionaries/limi.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/dictionaries/limi.xml	(revision )
++++ .idea/dictionaries/limi.xml	(revision )
+@@ -0,0 +1,8 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="limi">
++    <words>
++      <w>edittext</w>
++      <w>roundret</w>
++    </words>
++  </dictionary>
++</component>
+\ No newline at end of file
+Index: app/src/main/res/drawable/login_edit.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/login_edit.xml	(revision )
++++ app/src/main/res/drawable/login_edit.xml	(revision )
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
++    <!--android:shape="rectangle">-->
++    <!--&lt;!&ndash;<solid android:color="#FFFFFF"/>&ndash;&gt;-->
++    <!--<padding android:left="10dp"-->
++        <!--android:top="10dp"-->
++        <!--android:right="10dp"-->
++        <!--android:bottom="10dp"/>-->
++    <!--<corners android:radius="15dp"/>-->
++<!--</shape>-->
++<selector xmlns:android="http://schemas.android.com/apk/res/android">
++    <item android:state_window_focused="false" android:drawable="@drawable/edittext_normal" />
++    <item android:state_focused="true" android:drawable="@drawable/edittext_focused" />
++</selector>
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision )
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Default screen margins, per the Android Design guidelines. -->
++    <dimen name="activity_horizontal_margin">16dp</dimen>
++    <dimen name="activity_vertical_margin">16dp</dimen>
++    <dimen name="fab_margin">16dp</dimen>
++</resources>
+Index: app/src/main/res/menu/menu_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_login.xml	(revision )
++++ app/src/main/res/menu/menu_login.xml	(revision )
+@@ -0,0 +1,10 @@
++<menu xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    tools:context="com.limi.andorid.vocabularyassistant.LoginActivity">
++    <item
++        android:id="@+id/action_settings"
++        android:orderInCategory="100"
++        android:title="@string/action_settings"
++        app:showAsAction="never" />
++</menu>
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle.properties	(revision )
++++ gradle.properties	(revision )
+@@ -0,0 +1,18 @@
++# Project-wide Gradle settings.
++
++# IDE (e.g. Android Studio) users:
++# Gradle settings configured through the IDE *will override*
++# any settings specified in this file.
++
++# For more details on how to configure your build environment visit
++# http://www.gradle.org/docs/current/userguide/build_environment.html
++
++# Specifies the JVM arguments used for the daemon process.
++# The setting is particularly useful for tweaking memory settings.
++# Default value: -Xmx10248m -XX:MaxPermSize=256m
++# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
++
++# When configured, Gradle will run in incubating parallel mode.
++# This option should only be used with decoupled projects. More details, visit
++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
++# org.gradle.parallel=true
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_sign_up.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_sign_up.xml	(revision )
++++ app/src/main/res/layout/activity_sign_up.xml	(revision )
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="utf-8"?>
++<android.support.design.widget.CoordinatorLayout
++    xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:fitsSystemWindows="true"
++    tools:context=".SignupActivity">
++
++    <android.support.design.widget.AppBarLayout
++        android:layout_height="wrap_content"
++        android:layout_width="match_parent"
++        android:theme="@style/AppTheme.AppBarOverlay">
++
++
++    </android.support.design.widget.AppBarLayout>
++
++    <include layout="@layout/content_sign_up"/>
++
++</android.support.design.widget.CoordinatorLayout>
+Index: app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java	(revision )
++++ app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java	(revision )
+@@ -0,0 +1,13 @@
++package com.limi.andorid.vocabularyassistant;
++
++import android.app.Application;
++import android.test.ApplicationTestCase;
++
++/**
++ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
++ */
++public class ApplicationTest extends ApplicationTestCase<Application> {
++    public ApplicationTest() {
++        super(Application.class);
++    }
++}
+\ No newline at end of file
+Index: Login_and_sign_up_V1_1.patch
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Login_and_sign_up_V1_1.patch	(revision )
++++ Login_and_sign_up_V1_1.patch	(revision )
+@@ -0,0 +1,1833 @@
++Index: app/build.gradle
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/build.gradle	(revision )
+++++ app/build.gradle	(revision )
++@@ -0,0 +1,28 @@
+++apply plugin: 'com.android.application'
+++
+++android {
+++    compileSdkVersion 23
+++    buildToolsVersion "23.0.2"
+++
+++    defaultConfig {
+++        applicationId "com.limi.andorid.vocabularyassistant"
+++        minSdkVersion 15
+++        targetSdkVersion 23
+++        versionCode 1
+++        versionName "1.0"
+++    }
+++    buildTypes {
+++        release {
+++            minifyEnabled false
+++            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+++        }
+++    }
+++}
+++
+++dependencies {
+++    compile fileTree(dir: 'libs', include: ['*.jar'])
+++    testCompile 'junit:junit:4.12'
+++    compile 'com.android.support:appcompat-v7:23.2.0'
+++    compile 'com.android.support:design:23.2.0'
+++    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+++}
++Index: build.gradle
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- build.gradle	(revision )
+++++ build.gradle	(revision )
++@@ -0,0 +1,23 @@
+++// Top-level build file where you can add configuration options common to all sub-projects/modules.
+++
+++buildscript {
+++    repositories {
+++        jcenter()
+++    }
+++    dependencies {
+++        classpath 'com.android.tools.build:gradle:1.5.0'
+++
+++        // NOTE: Do not place your application dependencies here; they belong
+++        // in the individual module build.gradle files
+++    }
+++}
+++
+++allprojects {
+++    repositories {
+++        jcenter()
+++    }
+++}
+++
+++task clean(type: Delete) {
+++    delete rootProject.buildDir
+++}
++Index: .idea/misc.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/misc.xml	(revision )
+++++ .idea/misc.xml	(revision )
++@@ -0,0 +1,46 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="EntryPointsManager">
+++    <entry_points version="2.0" />
+++  </component>
+++  <component name="NullableNotNullManager">
+++    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
+++    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
+++    <option name="myNullables">
+++      <value>
+++        <list size="4">
+++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
+++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
+++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+++        </list>
+++      </value>
+++    </option>
+++    <option name="myNotNulls">
+++      <value>
+++        <list size="4">
+++          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
+++          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
+++          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
+++          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
+++        </list>
+++      </value>
+++    </option>
+++  </component>
+++  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+++    <OptionsSetting value="true" id="Add" />
+++    <OptionsSetting value="true" id="Remove" />
+++    <OptionsSetting value="true" id="Checkout" />
+++    <OptionsSetting value="true" id="Update" />
+++    <OptionsSetting value="true" id="Status" />
+++    <OptionsSetting value="true" id="Edit" />
+++    <ConfirmationsSetting value="0" id="Add" />
+++    <ConfirmationsSetting value="0" id="Remove" />
+++  </component>
+++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+++    <output url="file://$PROJECT_DIR$/build/classes" />
+++  </component>
+++  <component name="ProjectType">
+++    <option name="id" value="Android" />
+++  </component>
+++</project>
++\ No newline at end of file
++Index: app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java	(revision )
+++++ app/src/main/java/com/limi/andorid/vocabularyassistant/Account.java	(revision )
++@@ -0,0 +1,42 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import java.util.ArrayList;
+++import java.util.Iterator;
+++
+++/**
+++ * Created by limi on 16/3/22.
+++ */
+++public class Account {
+++
+++    private String email;
+++    private String password;
+++    private int id;
+++    private static int lastID=0;
+++    private static ArrayList<Account> accountArrayList;
+++
+++
+++    public Account(String email,String password){
+++        this.email=email;
+++        this.password=password;
+++        id=++lastID;
+++        accountArrayList.add(this);
+++    }
+++
+++    public ArrayList<Account> getAccoutList(){
+++        return accountArrayList;
+++
+++    }
+++
+++    public static boolean match(String email,String password){
+++        Iterator<Account> iterator;
+++        iterator=accountArrayList.listIterator();
+++        while(iterator.hasNext()){
+++            Account ac= iterator.next();
+++            if (ac.email.equalsIgnoreCase(email)&&ac.password.equals(password)){
+++                return true;
+++            }
+++
+++        }
+++        return false;
+++    }
+++}
++Index: gradlew.bat
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- gradlew.bat	(revision )
+++++ gradlew.bat	(revision )
++@@ -0,0 +1,90 @@
+++@if "%DEBUG%" == "" @echo off
+++@rem ##########################################################################
+++@rem
+++@rem  Gradle startup script for Windows
+++@rem
+++@rem ##########################################################################
+++
+++@rem Set local scope for the variables with windows NT shell
+++if "%OS%"=="Windows_NT" setlocal
+++
+++@rem Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+++set DEFAULT_JVM_OPTS=
+++
+++set DIRNAME=%~dp0
+++if "%DIRNAME%" == "" set DIRNAME=.
+++set APP_BASE_NAME=%~n0
+++set APP_HOME=%DIRNAME%
+++
+++@rem Find java.exe
+++if defined JAVA_HOME goto findJavaFromJavaHome
+++
+++set JAVA_EXE=java.exe
+++%JAVA_EXE% -version >NUL 2>&1
+++if "%ERRORLEVEL%" == "0" goto init
+++
+++echo.
+++echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+++echo.
+++echo Please set the JAVA_HOME variable in your environment to match the
+++echo location of your Java installation.
+++
+++goto fail
+++
+++:findJavaFromJavaHome
+++set JAVA_HOME=%JAVA_HOME:"=%
+++set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+++
+++if exist "%JAVA_EXE%" goto init
+++
+++echo.
+++echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+++echo.
+++echo Please set the JAVA_HOME variable in your environment to match the
+++echo location of your Java installation.
+++
+++goto fail
+++
+++:init
+++@rem Get command-line arguments, handling Windowz variants
+++
+++if not "%OS%" == "Windows_NT" goto win9xME_args
+++if "%@eval[2+2]" == "4" goto 4NT_args
+++
+++:win9xME_args
+++@rem Slurp the command line arguments.
+++set CMD_LINE_ARGS=
+++set _SKIP=2
+++
+++:win9xME_args_slurp
+++if "x%~1" == "x" goto execute
+++
+++set CMD_LINE_ARGS=%*
+++goto execute
+++
+++:4NT_args
+++@rem Get arguments from the 4NT Shell from JP Software
+++set CMD_LINE_ARGS=%$
+++
+++:execute
+++@rem Setup the command line
+++
+++set CLASSPATH=%APP_HOME%\gradle\wrapper\gradle-wrapper.jar
+++
+++@rem Execute Gradle
+++"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %GRADLE_OPTS% "-Dorg.gradle.appname=%APP_BASE_NAME%" -classpath "%CLASSPATH%" org.gradle.wrapper.GradleWrapperMain %CMD_LINE_ARGS%
+++
+++:end
+++@rem End local scope for the variables with windows NT shell
+++if "%ERRORLEVEL%"=="0" goto mainEnd
+++
+++:fail
+++rem Set variable GRADLE_EXIT_CONSOLE if you need the _script_ return code instead of
+++rem the _cmd.exe /c_ return code!
+++if  not "" == "%GRADLE_EXIT_CONSOLE%" exit 1
+++exit /b 1
+++
+++:mainEnd
+++if "%OS%"=="Windows_NT" endlocal
+++
+++:omega
++Index: .idea/runConfigurations.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/runConfigurations.xml	(revision )
+++++ .idea/runConfigurations.xml	(revision )
++@@ -0,0 +1,12 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="RunConfigurationProducerService">
+++    <option name="ignoredProducers">
+++      <set>
+++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.AllInPackageGradleConfigurationProducer" />
+++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestClassGradleConfigurationProducer" />
+++        <option value="org.jetbrains.plugins.gradle.execution.test.runner.TestMethodGradleConfigurationProducer" />
+++      </set>
+++    </option>
+++  </component>
+++</project>
++\ No newline at end of file
++Index: app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java	(revision )
+++++ app/src/main/java/com/limi/andorid/vocabularyassistant/MainActivity.java	(revision )
++@@ -0,0 +1,32 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import android.content.Intent;
+++import android.os.Bundle;
+++import android.support.design.widget.FloatingActionButton;
+++import android.support.design.widget.Snackbar;
+++import android.support.v7.app.AppCompatActivity;
+++import android.support.v7.widget.Toolbar;
+++import android.view.View;
+++
+++public class MainActivity extends AppCompatActivity {
+++
+++    @Override
+++    protected void onCreate(Bundle savedInstanceState) {
+++        super.onCreate(savedInstanceState);
+++        setContentView(R.layout.activity_main);
+++        Intent intent = new Intent(this, LoginActivity.class);
+++        startActivity(intent);
+++        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+++        setSupportActionBar(toolbar);
+++
+++        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+++        fab.setOnClickListener(new View.OnClickListener() {
+++            @Override
+++            public void onClick(View view) {
+++                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+++                        .setAction("Action", null).show();
+++            }
+++        });
+++    }
+++
+++}
++Index: app/src/main/res/layout/content_sign_up.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/content_sign_up.xml	(revision )
+++++ app/src/main/res/layout/content_sign_up.xml	(revision )
++@@ -0,0 +1,84 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+++    android:layout_width="fill_parent"
+++    android:layout_height="fill_parent"
+++    android:fitsSystemWindows="true">
+++
+++    <LinearLayout
+++        android:orientation="vertical"
+++        android:layout_width="match_parent"
+++        android:layout_height="wrap_content"
+++        android:paddingTop="56dp"
+++        android:paddingLeft="24dp"
+++        android:paddingRight="24dp">
+++
+++        <!--<ImageView android:src="@drawable/logo"-->
+++        <!--android:layout_width="wrap_content"-->
+++        <!--android:layout_height="72dp"-->
+++        <!--android:layout_marginBottom="24dp"-->
+++        <!--android:layout_gravity="center_horizontal" />-->
+++
+++        <!-- Name Label -->
+++        <android.support.design.widget.TextInputLayout
+++            android:layout_width="match_parent"
+++            android:layout_height="wrap_content"
+++            android:layout_marginTop="8dp"
+++            android:layout_marginBottom="8dp">
+++            <EditText android:id="@+id/input_name"
+++                android:layout_width="match_parent"
+++                android:layout_height="wrap_content"
+++                android:inputType="textEmailAddress"
+++                android:singleLine="true"
+++                android:hint="@string/prompt_name"
+++                android:background="@drawable/login_edit"/>
+++        </android.support.design.widget.TextInputLayout>
+++
+++        <!-- Email Label -->
+++        <android.support.design.widget.TextInputLayout
+++            android:layout_width="match_parent"
+++            android:layout_height="wrap_content"
+++            android:layout_marginTop="8dp"
+++            android:layout_marginBottom="8dp">
+++            <EditText android:id="@+id/input_email"
+++                android:layout_width="match_parent"
+++                android:layout_height="wrap_content"
+++                android:inputType="textEmailAddress"
+++                android:singleLine="true"
+++                android:hint="@string/prompt_email"
+++                android:background="@drawable/login_edit"/>
+++        </android.support.design.widget.TextInputLayout>
+++
+++        <!-- Password Label -->
+++        <android.support.design.widget.TextInputLayout
+++            android:layout_width="match_parent"
+++            android:layout_height="wrap_content"
+++            android:layout_marginTop="8dp"
+++            android:layout_marginBottom="8dp">
+++            <EditText android:id="@+id/input_password"
+++                android:layout_width="match_parent"
+++                android:layout_height="wrap_content"
+++                android:inputType="textPassword"
+++                android:hint="@string/prompt_password"
+++                android:singleLine="true"
+++                android:background="@drawable/login_edit"/>
+++        </android.support.design.widget.TextInputLayout>
+++
+++        <android.support.v7.widget.AppCompatButton
+++            android:id="@+id/btn_sign_up"
+++            android:layout_width="fill_parent"
+++            android:layout_height="wrap_content"
+++            android:layout_marginTop="24dp"
+++            android:layout_marginBottom="24dp"
+++            android:padding="12dp"
+++            android:text="@string/action_sign_up"/>
+++
+++        <TextView android:id="@+id/link_login"
+++            android:layout_width="fill_parent"
+++            android:layout_height="wrap_content"
+++            android:layout_marginBottom="24dp"
+++            android:text="@string/content_login"
+++            android:gravity="center"
+++            android:textSize="16sp"/>
+++
+++    </LinearLayout>
+++</ScrollView>
++\ No newline at end of file
++Index: app/src/main/res/layout/activity_login.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/activity_login.xml	(revision )
+++++ app/src/main/res/layout/activity_login.xml	(revision )
++@@ -0,0 +1,21 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+++    xmlns:app="http://schemas.android.com/apk/res-auto"
+++    xmlns:tools="http://schemas.android.com/tools"
+++    android:layout_width="match_parent"
+++    android:layout_height="match_parent"
+++    android:fitsSystemWindows="true"
+++    tools:context="com.limi.andorid.vocabularyassistant.LoginActivity">
+++
+++    <android.support.design.widget.AppBarLayout
+++        android:layout_width="match_parent"
+++        android:layout_height="wrap_content"
+++        android:theme="@style/AppTheme.AppBarOverlay">
+++
+++
+++    </android.support.design.widget.AppBarLayout>
+++
+++    <include layout="@layout/content_login" />
+++
+++
+++</android.support.design.widget.CoordinatorLayout>
++Index: .idea/gradle.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/gradle.xml	(revision )
+++++ .idea/gradle.xml	(revision )
++@@ -0,0 +1,19 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="GradleSettings">
+++    <option name="linkedExternalProjectsSettings">
+++      <GradleProjectSettings>
+++        <option name="distributionType" value="LOCAL" />
+++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+++        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.8" />
+++        <option name="gradleJvm" value="1.8" />
+++        <option name="modules">
+++          <set>
+++            <option value="$PROJECT_DIR$" />
+++            <option value="$PROJECT_DIR$/app" />
+++          </set>
+++        </option>
+++      </GradleProjectSettings>
+++    </option>
+++  </component>
+++</project>
++\ No newline at end of file
++Index: app/src/main/res/layout/activity_main.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/activity_main.xml	(revision )
+++++ app/src/main/res/layout/activity_main.xml	(revision )
++@@ -0,0 +1,34 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+++    xmlns:app="http://schemas.android.com/apk/res-auto"
+++    xmlns:tools="http://schemas.android.com/tools"
+++    android:layout_width="match_parent"
+++    android:layout_height="match_parent"
+++    android:fitsSystemWindows="true"
+++    tools:context="com.limi.andorid.vocabularyassistant.MainActivity">
+++
+++    <android.support.design.widget.AppBarLayout
+++        android:layout_width="match_parent"
+++        android:layout_height="wrap_content"
+++        android:theme="@style/AppTheme.AppBarOverlay">
+++
+++        <android.support.v7.widget.Toolbar
+++            android:id="@+id/toolbar"
+++            android:layout_width="match_parent"
+++            android:layout_height="?attr/actionBarSize"
+++            android:background="?attr/colorPrimary"
+++            app:popupTheme="@style/AppTheme.PopupOverlay" />
+++
+++    </android.support.design.widget.AppBarLayout>
+++
+++    <include layout="@layout/content_main" />
+++
+++    <android.support.design.widget.FloatingActionButton
+++        android:id="@+id/fab"
+++        android:layout_width="wrap_content"
+++        android:layout_height="wrap_content"
+++        android:layout_gravity="bottom|end"
+++        android:layout_margin="@dimen/fab_margin"
+++        android:src="@android:drawable/ic_dialog_email" />
+++
+++</android.support.design.widget.CoordinatorLayout>
++Index: app/src/main/res/layout/content_login.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/content_login.xml	(revision )
+++++ app/src/main/res/layout/content_login.xml	(revision )
++@@ -0,0 +1,71 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+++android:layout_width="fill_parent"
+++android:layout_height="fill_parent"
+++android:fitsSystemWindows="true">
+++
+++<LinearLayout
+++    android:orientation="vertical"
+++    android:layout_width="match_parent"
+++    android:layout_height="wrap_content"
+++    android:paddingTop="56dp"
+++    android:paddingLeft="24dp"
+++    android:paddingRight="24dp">
+++
+++    <!--<ImageView android:src="@drawable/logo"-->
+++    <!--android:layout_width="wrap_content"-->
+++    <!--android:layout_height="72dp"-->
+++    <!--android:layout_marginBottom="24dp"-->
+++    <!--android:layout_gravity="center_horizontal" />-->
+++
+++
+++
+++    <!-- Email Label -->
+++    <android.support.design.widget.TextInputLayout
+++        android:layout_width="match_parent"
+++        android:layout_height="wrap_content"
+++        android:layout_marginTop="8dp"
+++        android:layout_marginBottom="8dp">
+++        <EditText android:id="@+id/input_email"
+++            android:layout_width="match_parent"
+++            android:layout_height="wrap_content"
+++            android:inputType="textEmailAddress"
+++            android:singleLine="true"
+++            android:hint="@string/prompt_email"
+++            android:background="@drawable/login_edit"/>
+++    </android.support.design.widget.TextInputLayout>
+++
+++    <!-- Password Label -->
+++    <android.support.design.widget.TextInputLayout
+++        android:layout_width="match_parent"
+++        android:layout_height="wrap_content"
+++        android:layout_marginTop="8dp"
+++        android:layout_marginBottom="8dp">
+++        <EditText android:id="@+id/input_password"
+++            android:layout_width="match_parent"
+++            android:layout_height="wrap_content"
+++            android:inputType="textPassword"
+++            android:hint="@string/prompt_password"
+++            android:singleLine="true"
+++            android:background="@drawable/login_edit"/>
+++    </android.support.design.widget.TextInputLayout>
+++
+++    <android.support.v7.widget.AppCompatButton
+++        android:id="@+id/btn_login"
+++        android:layout_width="fill_parent"
+++        android:layout_height="wrap_content"
+++        android:layout_marginTop="24dp"
+++        android:layout_marginBottom="24dp"
+++        android:padding="12dp"
+++        android:text="@string/action_sign_in"/>
+++
+++    <TextView android:id="@+id/link_signup"
+++        android:layout_width="fill_parent"
+++        android:layout_height="wrap_content"
+++        android:layout_marginBottom="24dp"
+++        android:text="@string/content_singup"
+++        android:gravity="center"
+++        android:textSize="16sp"/>
+++
+++</LinearLayout>
+++</ScrollView>
++Index: app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java	(revision )
+++++ app/src/test/java/com/limi/andorid/vocabularyassistant/ExampleUnitTest.java	(revision )
++@@ -0,0 +1,15 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import org.junit.Test;
+++
+++import static org.junit.Assert.*;
+++
+++/**
+++ * To work on unit tests, switch the Test Artifact in the Build Variants view.
+++ */
+++public class ExampleUnitTest {
+++    @Test
+++    public void addition_isCorrect() throws Exception {
+++        assertEquals(4, 2 + 2);
+++    }
+++}
++\ No newline at end of file
++Index: .idea/dictionaries/limi.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/dictionaries/limi.xml	(revision )
+++++ .idea/dictionaries/limi.xml	(revision )
++@@ -0,0 +1,8 @@
+++<component name="ProjectDictionaryState">
+++  <dictionary name="limi">
+++    <words>
+++      <w>edittext</w>
+++      <w>roundret</w>
+++    </words>
+++  </dictionary>
+++</component>
++\ No newline at end of file
++Index: app/src/main/res/drawable/login_edit.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/drawable/login_edit.xml	(revision )
+++++ app/src/main/res/drawable/login_edit.xml	(revision )
++@@ -0,0 +1,14 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"-->
+++    <!--android:shape="rectangle">-->
+++    <!--&lt;!&ndash;<solid android:color="#FFFFFF"/>&ndash;&gt;-->
+++    <!--<padding android:left="10dp"-->
+++        <!--android:top="10dp"-->
+++        <!--android:right="10dp"-->
+++        <!--android:bottom="10dp"/>-->
+++    <!--<corners android:radius="15dp"/>-->
+++<!--</shape>-->
+++<selector xmlns:android="http://schemas.android.com/apk/res/android">
+++    <item android:state_window_focused="false" android:drawable="@drawable/edittext_normal" />
+++    <item android:state_focused="true" android:drawable="@drawable/edittext_focused" />
+++</selector>
++\ No newline at end of file
++Index: app/src/main/res/values/dimens.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values/dimens.xml	(revision )
+++++ app/src/main/res/values/dimens.xml	(revision )
++@@ -0,0 +1,6 @@
+++<resources>
+++    <!-- Default screen margins, per the Android Design guidelines. -->
+++    <dimen name="activity_horizontal_margin">16dp</dimen>
+++    <dimen name="activity_vertical_margin">16dp</dimen>
+++    <dimen name="fab_margin">16dp</dimen>
+++</resources>
++Index: app/src/main/res/menu/menu_login.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/menu/menu_login.xml	(revision )
+++++ app/src/main/res/menu/menu_login.xml	(revision )
++@@ -0,0 +1,10 @@
+++<menu xmlns:android="http://schemas.android.com/apk/res/android"
+++    xmlns:app="http://schemas.android.com/apk/res-auto"
+++    xmlns:tools="http://schemas.android.com/tools"
+++    tools:context="com.limi.andorid.vocabularyassistant.LoginActivity">
+++    <item
+++        android:id="@+id/action_settings"
+++        android:orderInCategory="100"
+++        android:title="@string/action_settings"
+++        app:showAsAction="never" />
+++</menu>
++Index: gradle.properties
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- gradle.properties	(revision )
+++++ gradle.properties	(revision )
++@@ -0,0 +1,18 @@
+++# Project-wide Gradle settings.
+++
+++# IDE (e.g. Android Studio) users:
+++# Gradle settings configured through the IDE *will override*
+++# any settings specified in this file.
+++
+++# For more details on how to configure your build environment visit
+++# http://www.gradle.org/docs/current/userguide/build_environment.html
+++
+++# Specifies the JVM arguments used for the daemon process.
+++# The setting is particularly useful for tweaking memory settings.
+++# Default value: -Xmx10248m -XX:MaxPermSize=256m
+++# org.gradle.jvmargs=-Xmx2048m -XX:MaxPermSize=512m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8
+++
+++# When configured, Gradle will run in incubating parallel mode.
+++# This option should only be used with decoupled projects. More details, visit
+++# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+++# org.gradle.parallel=true
++\ No newline at end of file
++Index: app/src/main/res/layout/activity_sign_up.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/activity_sign_up.xml	(revision )
+++++ app/src/main/res/layout/activity_sign_up.xml	(revision )
++@@ -0,0 +1,21 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<android.support.design.widget.CoordinatorLayout
+++    xmlns:android="http://schemas.android.com/apk/res/android"
+++    xmlns:app="http://schemas.android.com/apk/res-auto"
+++    xmlns:tools="http://schemas.android.com/tools"
+++    android:layout_width="match_parent"
+++    android:layout_height="match_parent"
+++    android:fitsSystemWindows="true"
+++    tools:context=".SignupActivity">
+++
+++    <android.support.design.widget.AppBarLayout
+++        android:layout_height="wrap_content"
+++        android:layout_width="match_parent"
+++        android:theme="@style/AppTheme.AppBarOverlay">
+++
+++
+++    </android.support.design.widget.AppBarLayout>
+++
+++    <include layout="@layout/content_sign_up"/>
+++
+++</android.support.design.widget.CoordinatorLayout>
++Index: app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java	(revision )
+++++ app/src/androidTest/java/com/limi/andorid/vocabularyassistant/ApplicationTest.java	(revision )
++@@ -0,0 +1,13 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import android.app.Application;
+++import android.test.ApplicationTestCase;
+++
+++/**
+++ * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
+++ */
+++public class ApplicationTest extends ApplicationTestCase<Application> {
+++    public ApplicationTest() {
+++        super(Application.class);
+++    }
+++}
++\ No newline at end of file
++Index: .gitignore
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .gitignore	(revision )
+++++ .gitignore	(revision )
++@@ -0,0 +1,8 @@
+++*.iml
+++.gradle
+++/local.properties
+++/.idea/workspace.xml
+++/.idea/libraries
+++.DS_Store
+++/build
+++/captures
++Index: app/.gitignore
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/.gitignore	(revision )
+++++ app/.gitignore	(revision )
++@@ -0,0 +1,1 @@
+++/build
++Index: app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java	(revision )
+++++ app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java	(revision )
++@@ -0,0 +1,187 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import android.app.ProgressDialog;
+++import android.content.Intent;
+++import android.content.SharedPreferences;
+++import android.os.Bundle;
+++import android.support.v7.app.AppCompatActivity;
+++import android.support.v7.widget.AppCompatButton;
+++import android.text.TextUtils;
+++import android.view.Menu;
+++import android.view.MenuItem;
+++import android.view.View;
+++import android.widget.EditText;
+++import android.widget.TextView;
+++import android.widget.Toast;
+++
+++public class SignupActivity extends AppCompatActivity {
+++
+++    private EditText nameView;
+++    private EditText email;
+++    private EditText password;
+++    private AppCompatButton signupButton;
+++    private SharedPreferences sp;
+++    private Intent intent;
+++
+++
+++    @Override
+++    public void onCreate(Bundle savedInstanceState) {
+++        super.onCreate(savedInstanceState);
+++//        sp=this.getSharedPreferences();
+++        setContentView(R.layout.activity_sign_up);
+++        nameView = (EditText) findViewById(R.id.input_name);
+++        email = (EditText) findViewById(R.id.input_email);
+++        password = (EditText) findViewById(R.id.input_password);
+++        signupButton = (AppCompatButton) findViewById(R.id.btn_sign_up);
+++        TextView loginView = (TextView) findViewById(R.id.link_login);
+++
+++        signupButton.setOnClickListener(new View.OnClickListener() {
+++
+++            @Override
+++            public void onClick(View v) {
+++                singup_check();
+++            }
+++        });
+++
+++        loginView.setOnClickListener(new View.OnClickListener() {
+++            @Override
+++            public void onClick(View v) {
+++                finish();
+++            }
+++        });
+++
+++    }
+++
+++    public void singup_check() {
+++//        Account a1 = new Account("abc@abc.com", "123456");
+++
+++        if (check_validation()) {
+++            final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
+++                    R.style.AppTheme_Dialog);
+++            progressDialog.setIndeterminate(true);
+++            progressDialog.setMessage("Saving...");
+++            progressDialog.show();
+++
+++            // TODO: Implement your own authentication logic here.
+++            new android.os.Handler().postDelayed(
+++                    new Runnable() {
+++                        public void run() {
+++                            // On complete call either onLoginSuccess or onLoginFailed
+++                            if (authenticate())
+++                                signup_success();
+++                            else
+++                                signup_fail();
+++                            progressDialog.dismiss();
+++                        }
+++                    }, 3000);
+++        } else {
+++            signup_fail();
+++
+++        }
+++    }
+++
+++    private void signup_success() {
+++        Toast.makeText(getBaseContext(), "Sign up successed", Toast.LENGTH_LONG).show();
+++        signupButton.setEnabled(true);
+++        finish();
+++    }
+++
+++    private void signup_fail() {
+++        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
+++        signupButton.setEnabled(true);
+++    }
+++
+++    public boolean check_validation() {
+++        boolean validation;
+++
+++        String nameText=nameView.getText().toString();
+++        String emailText = email.getText().toString();
+++        String passwordText = password.getText().toString();
+++
+++        if (TextUtils.isEmpty(nameText)) {
+++            email.setError(getString(R.string.error_field_required));
+++            validation = false;
+++
+++        } else if (validateName(nameText)) {
+++            email.setError(getString(R.string.error_invalid_name));
+++            validation = false;
+++        } else {
+++            email.setError(null);
+++            validation = true;
+++        }
+++
+++        //check for email address
+++
+++        if (TextUtils.isEmpty(emailText)) {
+++            email.setError(getString(R.string.error_field_required));
+++            validation = false;
+++
+++        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+++            email.setError(getString(R.string.error_invalid_email));
+++            validation = false;
+++        } else {
+++            email.setError(null);
+++            validation = true;
+++        }
+++
+++
+++        if (passwordText.isEmpty() || password.length() < 6 || password.length() > 16) {
+++            password.setError(getString(R.string.error_password_length));
+++
+++            validation = false;
+++        } else {
+++            password.setError(null);
+++            validation = true;
+++        }
+++
+++
+++        return validation;
+++
+++    }
+++
+++    public boolean authenticate() {
+++        String emailText = email.getText().toString();
+++        String passwordText = password.getText().toString();
+++        return (emailText.equalsIgnoreCase("aaa@aaa.com")&&passwordText.equals("123456"));
+++    }
+++
+++
+++    public boolean validateName(String s){
+++        char name[]=s.toCharArray();
+++        for (char c:name ){
+++            if(!(c<='a'&&c>='Z')||(c==' ')) {
+++                return false;
+++            }
+++        }
+++        return  true;
+++    }
+++
+++    @Override
+++    public boolean onCreateOptionsMenu(Menu menu) {
+++        // Inflate the menu; this adds items to the action bar if it is present.
+++        getMenuInflater().inflate(R.menu.menu_login, menu);
+++        return true;
+++    }
+++
+++    @Override
+++    public boolean onOptionsItemSelected(MenuItem item) {
+++        // Handle action bar item clicks here. The action bar will
+++        // automatically handle clicks on the Home/Up button, so long
+++        // as you specify a parent activity in AndroidManifest.xml.
+++        int id = item.getItemId();
+++
+++        //noinspection SimplifiableIfStatement
+++        if (id == R.id.action_settings) {
+++            return true;
+++        }
+++
+++        return super.onOptionsItemSelected(item);
+++    }
+++
+++    @Override
+++    public void onBackPressed() {
+++        // Disable going back to the MainActivity
+++        moveTaskToBack(true);
+++    }
+++
+++}
++Index: app/src/main/res/drawable/edittext_focused.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/drawable/edittext_focused.xml	(revision )
+++++ app/src/main/res/drawable/edittext_focused.xml	(revision )
++@@ -0,0 +1,12 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<shape xmlns:android="http://schemas.android.com/apk/res/android"
+++    android:shape="rectangle">
+++    <padding android:left="10dp"
+++        android:top="10dp"
+++        android:right="10dp"
+++        android:bottom="10dp"/>
+++    <corners android:radius="15dp"/>
+++    <stroke
+++        android:width="1dp"
+++        android:color="@color/secondary_text" />
+++</shape>
++\ No newline at end of file
++Index: app/src/main/res/drawable/edittext_normal.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/drawable/edittext_normal.xml	(revision )
+++++ app/src/main/res/drawable/edittext_normal.xml	(revision )
++@@ -0,0 +1,12 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<shape xmlns:android="http://schemas.android.com/apk/res/android"
+++    android:shape="rectangle">
+++    <padding android:left="10dp"
+++        android:top="10dp"
+++        android:right="10dp"
+++        android:bottom="10dp"/>
+++    <corners android:radius="15dp"/>
+++    <stroke
+++        android:width="1dip"
+++        android:color="@color/divider" />
+++</shape>
++Index: .idea/.name
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/.name	(revision )
+++++ .idea/.name	(revision )
++@@ -0,0 +1,1 @@
+++VocabularyAssistant
++\ No newline at end of file
++Index: app/src/main/res/values-v21/styles.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values-v21/styles.xml	(revision )
+++++ app/src/main/res/values-v21/styles.xml	(revision )
++@@ -0,0 +1,9 @@
+++<resources>>
+++
+++    <style name="AppTheme.NoActionBar">
+++        <item name="windowActionBar">false</item>
+++        <item name="windowNoTitle">true</item>
+++        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+++        <item name="android:statusBarColor">@android:color/transparent</item>
+++    </style>
+++</resources>
++Index: .idea/inspectionProfiles/profiles_settings.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/inspectionProfiles/profiles_settings.xml	(revision )
+++++ .idea/inspectionProfiles/profiles_settings.xml	(revision )
++@@ -0,0 +1,7 @@
+++<component name="InspectionProjectProfileManager">
+++  <settings>
+++    <option name="PROJECT_PROFILE" value="Project Default" />
+++    <option name="USE_PROJECT_PROFILE" value="true" />
+++    <version value="1.0" />
+++  </settings>
+++</component>
++\ No newline at end of file
++Index: app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java	(revision )
+++++ app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java	(revision )
++@@ -0,0 +1,222 @@
+++package com.limi.andorid.vocabularyassistant;
+++
+++import android.app.ProgressDialog;
+++import android.content.Intent;
+++import android.content.SharedPreferences;
+++import android.net.Uri;
+++import android.os.Bundle;
+++import android.os.Handler;
+++import android.support.v7.app.AppCompatActivity;
+++import android.support.v7.widget.AppCompatButton;
+++import android.text.TextUtils;
+++import android.util.Patterns;
+++import android.view.View;
+++import android.view.Menu;
+++import android.view.MenuItem;
+++import android.widget.EditText;
+++import android.widget.TextView;
+++import android.widget.Toast;
+++
+++import com.google.android.gms.appindexing.Action;
+++import com.google.android.gms.appindexing.AppIndex;
+++import com.google.android.gms.common.api.GoogleApiClient;
+++
+++public class LoginActivity extends AppCompatActivity {
+++
+++    private EditText email;
+++    private EditText password;
+++    private AppCompatButton login;
+++    private TextView signupView;
+++    private SharedPreferences sp;
+++    private Intent intent;
+++    /**
+++     * ATTENTION: This was auto-generated to implement the App Indexing API.
+++     * See https://g.co/AppIndexing/AndroidStudio for more information.
+++     */
+++    private GoogleApiClient client;
+++
+++
+++    @Override
+++    public void onCreate(Bundle savedInstanceState) {
+++        super.onCreate(savedInstanceState);
+++//        sp=this.getSharedPreferences();
+++        setContentView(R.layout.activity_login);
+++        email = (EditText) findViewById(R.id.input_email);
+++        password = (EditText) findViewById(R.id.input_password);
+++        login = (AppCompatButton) findViewById(R.id.btn_login);
+++        signupView = (TextView) findViewById(R.id.link_signup);
+++
+++        intent = new Intent(this, SignupActivity.class);
+++        login.setOnClickListener(new View.OnClickListener() {
+++
+++            @Override
+++            public void onClick(View v) {
+++                login_check();
+++            }
+++        });
+++
+++        signupView.setOnClickListener(new View.OnClickListener() {
+++
+++            @Override
+++            public void onClick(View v) {
+++                startActivity(intent);
+++            }
+++        });
+++        // ATTENTION: This was auto-generated to implement the App Indexing API.
+++        // See https://g.co/AppIndexing/AndroidStudio for more information.
+++        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+++    }
+++
+++
+++    public void login_check() {
+++//        Account a1 = new Account("abc@abc.com", "123456");
+++
+++        if (check_validation()) {
+++            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
+++                    R.style.AppTheme_Dialog);
+++            progressDialog.setIndeterminate(true);
+++            progressDialog.setMessage("Authenticating...");
+++            progressDialog.show();
+++
+++            String emailText = email.getText().toString();
+++            String passwordText = password.getText().toString();
+++
+++            // TODO: Implement your own authentication logic here.
+++
+++            new Handler().postDelayed(
+++                    new Runnable() {
+++                        public void run() {
+++                            // On complete call either onLoginSuccess or onLoginFailed
+++                            if (authenticate())
+++                                login_success();
+++                            else
+++                                login_fail();
+++                            progressDialog.dismiss();
+++                        }
+++                    }, 3000);
+++
+++        } else {
+++            login_fail();
+++
+++        }
+++    }
+++
+++    private void login_success() {
+++        login.setEnabled(true);
+++        finish();
+++    }
+++
+++    private void login_fail() {
+++        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
+++        login.setEnabled(true);
+++    }
+++
+++    public boolean check_validation() {
+++        boolean validation;
+++
+++
+++        String emailText = email.getText().toString();
+++        String passwordText = password.getText().toString();
+++        //check for email address
+++
+++        if (TextUtils.isEmpty(emailText)) {
+++            email.setError(getString(R.string.error_field_required));
+++            validation = false;
+++
+++        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
+++            email.setError(getString(R.string.error_invalid_email));
+++            validation = false;
+++        } else {
+++            email.setError(null);
+++            validation = true;
+++        }
+++
+++
+++        if (passwordText.isEmpty() || password.length() < 6 || password.length() > 16) {
+++            password.setError(getString(R.string.error_password_length));
+++
+++            validation = false;
+++        } else {
+++            password.setError(null);
+++            validation = true;
+++        }
+++
+++
+++        return validation;
+++
+++    }
+++
+++    public boolean authenticate() {
+++        String emailText = email.getText().toString();
+++        String passwordText = password.getText().toString();
+++        return (emailText.equalsIgnoreCase("aaa@aaa.com") && passwordText.equals("123456"));
+++    }
+++
+++    @Override
+++    public boolean onCreateOptionsMenu(Menu menu) {
+++        // Inflate the menu; this adds items to the action bar if it is present.
+++        getMenuInflater().inflate(R.menu.menu_login, menu);
+++        return true;
+++    }
+++
+++    @Override
+++    public boolean onOptionsItemSelected(MenuItem item) {
+++        // Handle action bar item clicks here. The action bar will
+++        // automatically handle clicks on the Home/Up button, so long
+++        // as you specify a parent activity in AndroidManifest.xml.
+++        int id = item.getItemId();
+++
+++        //noinspection SimplifiableIfStatement
+++        if (id == R.id.action_settings) {
+++            return true;
+++        }
+++
+++        return super.onOptionsItemSelected(item);
+++    }
+++
+++    @Override
+++    public void onBackPressed() {
+++        // Disable going back to the MainActivity
+++        moveTaskToBack(true);
+++    }
+++
+++    @Override
+++    public void onStart() {
+++        super.onStart();
+++
+++        // ATTENTION: This was auto-generated to implement the App Indexing API.
+++        // See https://g.co/AppIndexing/AndroidStudio for more information.
+++        client.connect();
+++        Action viewAction = Action.newAction(
+++                Action.TYPE_VIEW, // TODO: choose an action type.
+++                "Login Page", // TODO: Define a title for the content shown.
+++                // TODO: If you have web page content that matches this app activity's content,
+++                // make sure this auto-generated web page URL is correct.
+++                // Otherwise, set the URL to null.
+++                Uri.parse("http://host/path"),
+++                // TODO: Make sure this auto-generated app deep link URI is correct.
+++                Uri.parse("android-app://com.limi.andorid.vocabularyassistant/http/host/path")
+++        );
+++        AppIndex.AppIndexApi.start(client, viewAction);
+++    }
+++
+++    @Override
+++    public void onStop() {
+++        super.onStop();
+++
+++        // ATTENTION: This was auto-generated to implement the App Indexing API.
+++        // See https://g.co/AppIndexing/AndroidStudio for more information.
+++        Action viewAction = Action.newAction(
+++                Action.TYPE_VIEW, // TODO: choose an action type.
+++                "Login Page", // TODO: Define a title for the content shown.
+++                // TODO: If you have web page content that matches this app activity's content,
+++                // make sure this auto-generated web page URL is correct.
+++                // Otherwise, set the URL to null.
+++                Uri.parse("http://host/path"),
+++                // TODO: Make sure this auto-generated app deep link URI is correct.
+++                Uri.parse("android-app://com.limi.andorid.vocabularyassistant/http/host/path")
+++        );
+++        AppIndex.AppIndexApi.end(client, viewAction);
+++        client.disconnect();
+++    }
+++}
++Index: app/src/main/res/values-w820dp/dimens.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values-w820dp/dimens.xml	(revision )
+++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
++@@ -0,0 +1,6 @@
+++<resources>
+++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+++         (such as screen margins) for screens with more than 820dp of available width. This
+++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+++    <dimen name="activity_horizontal_margin">64dp</dimen>
+++</resources>
++Index: .idea/compiler.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/compiler.xml	(revision )
+++++ .idea/compiler.xml	(revision )
++@@ -0,0 +1,22 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="CompilerConfiguration">
+++    <resourceExtensions />
+++    <wildcardResourcePatterns>
+++      <entry name="!?*.java" />
+++      <entry name="!?*.form" />
+++      <entry name="!?*.class" />
+++      <entry name="!?*.groovy" />
+++      <entry name="!?*.scala" />
+++      <entry name="!?*.flex" />
+++      <entry name="!?*.kt" />
+++      <entry name="!?*.clj" />
+++      <entry name="!?*.aj" />
+++    </wildcardResourcePatterns>
+++    <annotationProcessing>
+++      <profile default="true" name="Default" enabled="false">
+++        <processorPath useClasspath="true" />
+++      </profile>
+++    </annotationProcessing>
+++  </component>
+++</project>
++\ No newline at end of file
++Index: gradle/wrapper/gradle-wrapper.properties
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- gradle/wrapper/gradle-wrapper.properties	(revision )
+++++ gradle/wrapper/gradle-wrapper.properties	(revision )
++@@ -0,0 +1,6 @@
+++#Wed Oct 21 11:34:03 PDT 2015
+++distributionBase=GRADLE_USER_HOME
+++distributionPath=wrapper/dists
+++zipStoreBase=GRADLE_USER_HOME
+++zipStorePath=wrapper/dists
+++distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip
++Index: app/src/main/res/layout/content_main.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/layout/content_main.xml	(revision )
+++++ app/src/main/res/layout/content_main.xml	(revision )
++@@ -0,0 +1,15 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+++    xmlns:app="http://schemas.android.com/apk/res-auto"
+++    xmlns:tools="http://schemas.android.com/tools"
+++    android:layout_width="match_parent"
+++    android:layout_height="match_parent"
+++    android:paddingBottom="@dimen/activity_vertical_margin"
+++    android:paddingLeft="@dimen/activity_horizontal_margin"
+++    android:paddingRight="@dimen/activity_horizontal_margin"
+++    android:paddingTop="@dimen/activity_vertical_margin"
+++    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+++    tools:context="com.limi.andorid.vocabularyassistant.MainActivity"
+++    tools:showIn="@layout/activity_main">
+++
+++</RelativeLayout>
++Index: gradlew
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- gradlew	(revision )
+++++ gradlew	(revision )
++@@ -0,0 +1,160 @@
+++#!/usr/bin/env bash
+++
+++##############################################################################
+++##
+++##  Gradle start up script for UN*X
+++##
+++##############################################################################
+++
+++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
+++DEFAULT_JVM_OPTS=""
+++
+++APP_NAME="Gradle"
+++APP_BASE_NAME=`basename "$0"`
+++
+++# Use the maximum available, or set MAX_FD != -1 to use that value.
+++MAX_FD="maximum"
+++
+++warn ( ) {
+++    echo "$*"
+++}
+++
+++die ( ) {
+++    echo
+++    echo "$*"
+++    echo
+++    exit 1
+++}
+++
+++# OS specific support (must be 'true' or 'false').
+++cygwin=false
+++msys=false
+++darwin=false
+++case "`uname`" in
+++  CYGWIN* )
+++    cygwin=true
+++    ;;
+++  Darwin* )
+++    darwin=true
+++    ;;
+++  MINGW* )
+++    msys=true
+++    ;;
+++esac
+++
+++# Attempt to set APP_HOME
+++# Resolve links: $0 may be a link
+++PRG="$0"
+++# Need this for relative symlinks.
+++while [ -h "$PRG" ] ; do
+++    ls=`ls -ld "$PRG"`
+++    link=`expr "$ls" : '.*-> \(.*\)$'`
+++    if expr "$link" : '/.*' > /dev/null; then
+++        PRG="$link"
+++    else
+++        PRG=`dirname "$PRG"`"/$link"
+++    fi
+++done
+++SAVED="`pwd`"
+++cd "`dirname \"$PRG\"`/" >/dev/null
+++APP_HOME="`pwd -P`"
+++cd "$SAVED" >/dev/null
+++
+++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
+++
+++# Determine the Java command to use to start the JVM.
+++if [ -n "$JAVA_HOME" ] ; then
+++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
+++        # IBM's JDK on AIX uses strange locations for the executables
+++        JAVACMD="$JAVA_HOME/jre/sh/java"
+++    else
+++        JAVACMD="$JAVA_HOME/bin/java"
+++    fi
+++    if [ ! -x "$JAVACMD" ] ; then
+++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
+++
+++Please set the JAVA_HOME variable in your environment to match the
+++location of your Java installation."
+++    fi
+++else
+++    JAVACMD="java"
+++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+++
+++Please set the JAVA_HOME variable in your environment to match the
+++location of your Java installation."
+++fi
+++
+++# Increase the maximum file descriptors if we can.
+++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
+++    MAX_FD_LIMIT=`ulimit -H -n`
+++    if [ $? -eq 0 ] ; then
+++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
+++            MAX_FD="$MAX_FD_LIMIT"
+++        fi
+++        ulimit -n $MAX_FD
+++        if [ $? -ne 0 ] ; then
+++            warn "Could not set maximum file descriptor limit: $MAX_FD"
+++        fi
+++    else
+++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
+++    fi
+++fi
+++
+++# For Darwin, add options to specify how the application appears in the dock
+++if $darwin; then
+++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
+++fi
+++
+++# For Cygwin, switch paths to Windows format before running java
+++if $cygwin ; then
+++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
+++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
+++    JAVACMD=`cygpath --unix "$JAVACMD"`
+++
+++    # We build the pattern for arguments to be converted via cygpath
+++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
+++    SEP=""
+++    for dir in $ROOTDIRSRAW ; do
+++        ROOTDIRS="$ROOTDIRS$SEP$dir"
+++        SEP="|"
+++    done
+++    OURCYGPATTERN="(^($ROOTDIRS))"
+++    # Add a user-defined pattern to the cygpath arguments
+++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
+++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
+++    fi
+++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
+++    i=0
+++    for arg in "$@" ; do
+++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
+++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
+++
+++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
+++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
+++        else
+++            eval `echo args$i`="\"$arg\""
+++        fi
+++        i=$((i+1))
+++    done
+++    case $i in
+++        (0) set -- ;;
+++        (1) set -- "$args0" ;;
+++        (2) set -- "$args0" "$args1" ;;
+++        (3) set -- "$args0" "$args1" "$args2" ;;
+++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
+++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
+++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
+++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
+++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
+++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
+++    esac
+++fi
+++
+++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
+++function splitJvmOpts() {
+++    JVM_OPTS=("$@")
+++}
+++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
+++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
+++
+++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
++Index: app/src/main/AndroidManifest.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/AndroidManifest.xml	(revision )
+++++ app/src/main/AndroidManifest.xml	(revision )
++@@ -0,0 +1,42 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+++    package="com.limi.andorid.vocabularyassistant" >
+++
+++    <application
+++        android:allowBackup="true"
+++        android:icon="@mipmap/ic_launcher"
+++        android:label="@string/app_name"
+++        android:supportsRtl="true"
+++        android:theme="@style/AppTheme">
+++        <activity
+++            android:name=".MainActivity"
+++            android:label="@string/app_name"
+++            android:theme="@style/AppTheme.NoActionBar" >
+++            <intent-filter>
+++                <action android:name="android.intent.action.MAIN" />
+++
+++                <category android:name="android.intent.category.LAUNCHER" />
+++            </intent-filter>
+++        </activity>
+++        <activity
+++            android:name=".LoginActivity"
+++            android:label="@string/app_name"
+++            android:theme="@style/AppTheme_Dark" >
+++        </activity>
+++        <activity
+++            android:name=".SignupActivity"
+++            android:label="@string/app_name"
+++            android:parentActivityName=".LoginActivity"
+++            android:theme="@style/AppTheme_Dark" >
+++            <meta-data
+++                android:name="android.support.PARENT_ACTIVITY"
+++                android:value="com.limi.andorid.vocabularyassistant.LoginActivity" />
+++        </activity>
+++        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+++             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+++        <meta-data
+++            android:name="com.google.android.gms.version"
+++            android:value="@integer/google_play_services_version" />
+++    </application>
+++
+++</manifest>
++Index: app/proguard-rules.pro
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/proguard-rules.pro	(revision )
+++++ app/proguard-rules.pro	(revision )
++@@ -0,0 +1,17 @@
+++# Add project specific ProGuard rules here.
+++# By default, the flags in this file are appended to flags specified
+++# in /Users/limi/Library/Android/sdk/tools/proguard/proguard-android.txt
+++# You can edit the include path and order by changing the proguardFiles
+++# directive in build.gradle.
+++#
+++# For more details, see
+++#   http://developer.android.com/guide/developing/tools/proguard.html
+++
+++# Add any project specific keep options here:
+++
+++# If your project uses WebView with JS, uncomment the following
+++# and specify the fully qualified class name to the JavaScript interface
+++# class:
+++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
+++#   public *;
+++#}
++Index: app/src/main/res/values/strings.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values/strings.xml	(revision )
+++++ app/src/main/res/values/strings.xml	(revision )
++@@ -0,0 +1,16 @@
+++<resources>
+++    <string name="app_name">Vocabulary Assistant</string>
+++    <string name="action_settings">Settings</string>
+++    <string name="prompt_email">E-mail</string>
+++    <string name="prompt_password">Password</string>
+++    <string name="action_sign_in_short">Login</string>
+++    <string name="action_sign_in">Log in</string>
+++    <string name="content_singup">No account yet? Create one</string>
+++    <string name="error_field_required">This field is required.</string>
+++    <string name="error_invalid_email">The email address is invalid.</string>
+++    <string name="error_password_length">Must between 6 and 16 characters</string>
+++    <string name="action_sign_up">Sing Up</string>
+++    <string name="content_login">Have account? Log in</string>
+++    <string name="prompt_name">Name</string>
+++    <string name="error_invalid_name">The filed can only cotains alphabet and space blank</string>
+++</resources>
++Index: .idea/copyright/profiles_settings.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/copyright/profiles_settings.xml	(revision )
+++++ .idea/copyright/profiles_settings.xml	(revision )
++@@ -0,0 +1,3 @@
+++<component name="CopyrightManager">
+++  <settings default="" />
+++</component>
++\ No newline at end of file
++Index: app/src/main/res/values/colors.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values/colors.xml	(revision )
+++++ app/src/main/res/values/colors.xml	(revision )
++@@ -0,0 +1,36 @@
+++<?xml version="1.0" encoding="utf-8"?>
+++<resources>
+++    <color name="colorPrimary">#3F51B5</color>
+++    <color name="colorPrimaryDark">#303F9F</color>
+++    <color name="colorAccent">#FF4081</color>
+++
+++<!--Orange Blue-->
+++    <!--<color name="primary">#FF5722</color>-->
+++    <!--<color name="primary_dark">#E64A19</color>-->
+++    <!--<color name="primary_light">#FFCCBC</color>-->
+++    <!--<color name="accent">#03A9F4</color>-->
+++    <!--<color name="primary_text">#212121</color>-->
+++    <!--<color name="secondary_text">#727272</color>-->
+++    <!--<color name="icons">#FFFFFF</color>-->
+++    <!--<color name="divider">#B6B6B6</color>-->
+++
+++    <!--Yellow Blue-->
+++    <color name="primary">#CDDC39</color>
+++    <color name="primary_dark">#AFB42B</color>
+++    <color name="primary_light">#F0F4C3</color>
+++    <color name="accent">#03A9F4</color>
+++    <color name="primary_text">#212121</color>
+++    <color name="secondary_text">#727272</color>
+++    <color name="icons">#212121</color>
+++    <color name="divider">#B6B6B6</color>
+++
+++    <color name="black">#000000</color>
+++    <color name="jet">#222222</color>
+++    <color name="oil">#333333</color>
+++    <color name="monsoon">#777777</color>
+++    <color name="jumbo">#888888</color>
+++    <color name="aluminum">#999999</color>
+++    <color name="base">#AAAAAA</color>
+++    <color name="iron">#CCCCCC</color>
+++    <color name="white">#FFFFFF</color>
+++</resources>
++Index: .idea/vcs.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/vcs.xml	(revision )
+++++ .idea/vcs.xml	(revision )
++@@ -0,0 +1,6 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="VcsDirectoryMappings">
+++    <mapping directory="" vcs="Git" />
+++  </component>
+++</project>
++\ No newline at end of file
++Index: .idea/modules.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/modules.xml	(revision )
+++++ .idea/modules.xml	(revision )
++@@ -0,0 +1,9 @@
+++<?xml version="1.0" encoding="UTF-8"?>
+++<project version="4">
+++  <component name="ProjectModuleManager">
+++    <modules>
+++      <module fileurl="file://$PROJECT_DIR$/VocabularyAssistant.iml" filepath="$PROJECT_DIR$/VocabularyAssistant.iml" />
+++      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+++    </modules>
+++  </component>
+++</project>
++\ No newline at end of file
++Index: app/src/main/res/values/styles.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- app/src/main/res/values/styles.xml	(revision )
+++++ app/src/main/res/values/styles.xml	(revision )
++@@ -0,0 +1,49 @@
+++<resources>
+++
+++    <!-- Base application theme. -->
+++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+++        <!--Customize your theme here. -->
+++        <item name="colorPrimary">@color/colorPrimary</item>
+++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+++        <item name="colorAccent">@color/colorAccent</item>
+++
+++        <!--<item name="android:windowBackground">@color/primary</item>-->
+++
+++        <!--<item name="colorPrimary">@color/primary</item>-->
+++        <!--<item name="colorPrimaryDark">@color/primary_dark</item>-->
+++        <!--<item name="colorAccent">@color/accent</item>-->
+++
+++        <!--<item name="android:windowBackground">@color/primary</item>-->
+++
+++        <!--<item name="colorControlNormal">@color/iron</item>-->
+++        <!--<item name="colorControlActivated">@color/white</item>-->
+++        <!--<item name="colorControlHighlight">@color/white</item>-->
+++        <!--<item name="android:textColorHint">@color/iron</item>-->
+++
+++        <!--<item name="colorButtonNormal">@color/primary_darker</item>-->
+++        <!--<item name="android:colorButtonNormal">@color/primary_darker</item>-->
+++    </style>
+++
+++    <style name="AppTheme.NoActionBar">
+++        <item name="windowActionBar">false</item>
+++        <item name="windowNoTitle">true</item>
+++    </style>
+++
+++    <style name="AppTheme_Dark" parent="Theme.AppCompat.Light.NoActionBar">
+++        <item name="colorPrimary">@color/colorPrimary</item>
+++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+++        <item name="colorAccent">@color/colorAccent</item>
+++
+++    </style>
+++
+++    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+++
+++    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+++
+++    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
+++        <item name="colorAccent">@color/white</item>
+++        <item name="android:textColorPrimary">@color/iron</item>
+++        <item name="android:background">@color/colorPrimary</item>
+++    </style>
+++
+++</resources>
++Index: .idea/inspectionProfiles/Project_Default.xml
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- .idea/inspectionProfiles/Project_Default.xml	(revision )
+++++ .idea/inspectionProfiles/Project_Default.xml	(revision )
++@@ -0,0 +1,10 @@
+++<component name="InspectionProjectProfileManager">
+++  <profile version="1.0">
+++    <option name="myName" value="Project Default" />
+++    <inspection_tool class="AndroidLintUnusedAttribute" enabled="false" level="WARNING" enabled_by_default="false" />
+++    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
+++      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
+++      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
+++    </inspection_tool>
+++  </profile>
+++</component>
++\ No newline at end of file
++Index: settings.gradle
++IDEA additional info:
++Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
++<+>UTF-8
++===================================================================
++--- settings.gradle	(revision )
+++++ settings.gradle	(revision )
++@@ -0,0 +1,1 @@
+++include ':app'
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .gitignore	(revision )
++++ .gitignore	(revision )
+@@ -0,0 +1,8 @@
++*.iml
++.gradle
++/local.properties
++/.idea/workspace.xml
++/.idea/libraries
++.DS_Store
++/build
++/captures
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision )
++++ app/.gitignore	(revision )
+@@ -0,0 +1,1 @@
++/build
+Index: app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java	(revision )
++++ app/src/main/java/com/limi/andorid/vocabularyassistant/SignupActivity.java	(revision )
+@@ -0,0 +1,187 @@
++package com.limi.andorid.vocabularyassistant;
++
++import android.app.ProgressDialog;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.os.Bundle;
++import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.AppCompatButton;
++import android.text.TextUtils;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.view.View;
++import android.widget.EditText;
++import android.widget.TextView;
++import android.widget.Toast;
++
++public class SignupActivity extends AppCompatActivity {
++
++    private EditText nameView;
++    private EditText email;
++    private EditText password;
++    private AppCompatButton signupButton;
++    private SharedPreferences sp;
++    private Intent intent;
++
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++//        sp=this.getSharedPreferences();
++        setContentView(R.layout.activity_sign_up);
++        nameView = (EditText) findViewById(R.id.input_name);
++        email = (EditText) findViewById(R.id.input_email);
++        password = (EditText) findViewById(R.id.input_password);
++        signupButton = (AppCompatButton) findViewById(R.id.btn_sign_up);
++        TextView loginView = (TextView) findViewById(R.id.link_login);
++
++        signupButton.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                singup_check();
++            }
++        });
++
++        loginView.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                finish();
++            }
++        });
++
++    }
++
++    public void singup_check() {
++//        Account a1 = new Account("abc@abc.com", "123456");
++
++        if (check_validation()) {
++            final ProgressDialog progressDialog = new ProgressDialog(SignupActivity.this,
++                    R.style.AppTheme_Dialog);
++            progressDialog.setIndeterminate(true);
++            progressDialog.setMessage("Saving...");
++            progressDialog.show();
++
++            // TODO: Implement your own authentication logic here.
++            new android.os.Handler().postDelayed(
++                    new Runnable() {
++                        public void run() {
++                            // On complete call either onLoginSuccess or onLoginFailed
++                            if (authenticate())
++                                signup_success();
++                            else
++                                signup_fail();
++                            progressDialog.dismiss();
++                        }
++                    }, 3000);
++        } else {
++            signup_fail();
++
++        }
++    }
++
++    private void signup_success() {
++        Toast.makeText(getBaseContext(), "Sign up successed", Toast.LENGTH_LONG).show();
++        signupButton.setEnabled(true);
++        finish();
++    }
++
++    private void signup_fail() {
++        Toast.makeText(getBaseContext(), "Sign up failed", Toast.LENGTH_LONG).show();
++        signupButton.setEnabled(true);
++    }
++
++    public boolean check_validation() {
++        boolean validation;
++
++        String nameText=nameView.getText().toString();
++        String emailText = email.getText().toString();
++        String passwordText = password.getText().toString();
++
++        if (TextUtils.isEmpty(nameText)) {
++            email.setError(getString(R.string.error_field_required));
++            validation = false;
++
++        } else if (validateName(nameText)) {
++            email.setError(getString(R.string.error_invalid_name));
++            validation = false;
++        } else {
++            email.setError(null);
++            validation = true;
++        }
++
++        //check for email address
++
++        if (TextUtils.isEmpty(emailText)) {
++            email.setError(getString(R.string.error_field_required));
++            validation = false;
++
++        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
++            email.setError(getString(R.string.error_invalid_email));
++            validation = false;
++        } else {
++            email.setError(null);
++            validation = true;
++        }
++
++
++        if (passwordText.isEmpty() || password.length() < 6 || password.length() > 16) {
++            password.setError(getString(R.string.error_password_length));
++
++            validation = false;
++        } else {
++            password.setError(null);
++            validation = true;
++        }
++
++
++        return validation;
++
++    }
++
++    public boolean authenticate() {
++        String emailText = email.getText().toString();
++        String passwordText = password.getText().toString();
++        return (emailText.equalsIgnoreCase("aaa@aaa.com")&&passwordText.equals("123456"));
++    }
++
++
++    public boolean validateName(String s){
++        char name[]=s.toCharArray();
++        for (char c:name ){
++            if(!(c<='a'&&c>='Z')||(c==' ')) {
++                return false;
++            }
++        }
++        return  true;
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        // Inflate the menu; this adds items to the action bar if it is present.
++        getMenuInflater().inflate(R.menu.menu_login, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        // Handle action bar item clicks here. The action bar will
++        // automatically handle clicks on the Home/Up button, so long
++        // as you specify a parent activity in AndroidManifest.xml.
++        int id = item.getItemId();
++
++        //noinspection SimplifiableIfStatement
++        if (id == R.id.action_settings) {
++            return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++
++    @Override
++    public void onBackPressed() {
++        // Disable going back to the MainActivity
++        moveTaskToBack(true);
++    }
++
++}
+Index: app/src/main/res/drawable/edittext_focused.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/edittext_focused.xml	(revision )
++++ app/src/main/res/drawable/edittext_focused.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android"
++    android:shape="rectangle">
++    <padding android:left="10dp"
++        android:top="10dp"
++        android:right="10dp"
++        android:bottom="10dp"/>
++    <corners android:radius="15dp"/>
++    <stroke
++        android:width="1dp"
++        android:color="@color/secondary_text" />
++</shape>
+\ No newline at end of file
+Index: app/src/main/res/drawable/edittext_normal.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/edittext_normal.xml	(revision )
++++ app/src/main/res/drawable/edittext_normal.xml	(revision )
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="utf-8"?>
++<shape xmlns:android="http://schemas.android.com/apk/res/android"
++    android:shape="rectangle">
++    <padding android:left="10dp"
++        android:top="10dp"
++        android:right="10dp"
++        android:bottom="10dp"/>
++    <corners android:radius="15dp"/>
++    <stroke
++        android:width="1dip"
++        android:color="@color/divider" />
++</shape>
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.name	(revision )
++++ .idea/.name	(revision )
+@@ -0,0 +1,1 @@
++VocabularyAssistant
+\ No newline at end of file
+Index: app/src/main/res/values-v21/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-v21/styles.xml	(revision )
++++ app/src/main/res/values-v21/styles.xml	(revision )
+@@ -0,0 +1,9 @@
++<resources>>
++
++    <style name="AppTheme.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
++        <item name="android:statusBarColor">@android:color/transparent</item>
++    </style>
++</resources>
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/profiles_settings.xml	(revision )
++++ .idea/inspectionProfiles/profiles_settings.xml	(revision )
+@@ -0,0 +1,7 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="PROJECT_PROFILE" value="Project Default" />
++    <option name="USE_PROJECT_PROFILE" value="true" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java	(revision )
++++ app/src/main/java/com/limi/andorid/vocabularyassistant/LoginActivity.java	(revision )
+@@ -0,0 +1,222 @@
++package com.limi.andorid.vocabularyassistant;
++
++import android.app.ProgressDialog;
++import android.content.Intent;
++import android.content.SharedPreferences;
++import android.net.Uri;
++import android.os.Bundle;
++import android.os.Handler;
++import android.support.v7.app.AppCompatActivity;
++import android.support.v7.widget.AppCompatButton;
++import android.text.TextUtils;
++import android.util.Patterns;
++import android.view.View;
++import android.view.Menu;
++import android.view.MenuItem;
++import android.widget.EditText;
++import android.widget.TextView;
++import android.widget.Toast;
++
++import com.google.android.gms.appindexing.Action;
++import com.google.android.gms.appindexing.AppIndex;
++import com.google.android.gms.common.api.GoogleApiClient;
++
++public class LoginActivity extends AppCompatActivity {
++
++    private EditText email;
++    private EditText password;
++    private AppCompatButton login;
++    private TextView signupView;
++    private SharedPreferences sp;
++    private Intent intent;
++    /**
++     * ATTENTION: This was auto-generated to implement the App Indexing API.
++     * See https://g.co/AppIndexing/AndroidStudio for more information.
++     */
++    private GoogleApiClient client;
++
++
++    @Override
++    public void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++//        sp=this.getSharedPreferences();
++        setContentView(R.layout.activity_login);
++        email = (EditText) findViewById(R.id.input_email);
++        password = (EditText) findViewById(R.id.input_password);
++        login = (AppCompatButton) findViewById(R.id.btn_login);
++        signupView = (TextView) findViewById(R.id.link_signup);
++
++        intent = new Intent(this, SignupActivity.class);
++        login.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                login_check();
++            }
++        });
++
++        signupView.setOnClickListener(new View.OnClickListener() {
++
++            @Override
++            public void onClick(View v) {
++                startActivity(intent);
++            }
++        });
++        // ATTENTION: This was auto-generated to implement the App Indexing API.
++        // See https://g.co/AppIndexing/AndroidStudio for more information.
++        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
++    }
++
++
++    public void login_check() {
++//        Account a1 = new Account("abc@abc.com", "123456");
++
++        if (check_validation()) {
++            final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
++                    R.style.AppTheme_Dialog);
++            progressDialog.setIndeterminate(true);
++            progressDialog.setMessage("Authenticating...");
++            progressDialog.show();
++
++            String emailText = email.getText().toString();
++            String passwordText = password.getText().toString();
++
++            // TODO: Implement your own authentication logic here.
++
++            new Handler().postDelayed(
++                    new Runnable() {
++                        public void run() {
++                            // On complete call either onLoginSuccess or onLoginFailed
++                            if (authenticate())
++                                login_success();
++                            else
++                                login_fail();
++                            progressDialog.dismiss();
++                        }
++                    }, 3000);
++
++        } else {
++            login_fail();
++
++        }
++    }
++
++    private void login_success() {
++        login.setEnabled(true);
++        finish();
++    }
++
++    private void login_fail() {
++        Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
++        login.setEnabled(true);
++    }
++
++    public boolean check_validation() {
++        boolean validation;
++
++
++        String emailText = email.getText().toString();
++        String passwordText = password.getText().toString();
++        //check for email address
++
++        if (TextUtils.isEmpty(emailText)) {
++            email.setError(getString(R.string.error_field_required));
++            validation = false;
++
++        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
++            email.setError(getString(R.string.error_invalid_email));
++            validation = false;
++        } else {
++            email.setError(null);
++            validation = true;
++        }
++
++
++        if (passwordText.isEmpty() || password.length() < 6 || password.length() > 16) {
++            password.setError(getString(R.string.error_password_length));
++
++            validation = false;
++        } else {
++            password.setError(null);
++            validation = true;
++        }
++
++
++        return validation;
++
++    }
++
++    public boolean authenticate() {
++        String emailText = email.getText().toString();
++        String passwordText = password.getText().toString();
++        return (emailText.equalsIgnoreCase("aaa@aaa.com") && passwordText.equals("123456"));
++    }
++
++    @Override
++    public boolean onCreateOptionsMenu(Menu menu) {
++        // Inflate the menu; this adds items to the action bar if it is present.
++        getMenuInflater().inflate(R.menu.menu_login, menu);
++        return true;
++    }
++
++    @Override
++    public boolean onOptionsItemSelected(MenuItem item) {
++        // Handle action bar item clicks here. The action bar will
++        // automatically handle clicks on the Home/Up button, so long
++        // as you specify a parent activity in AndroidManifest.xml.
++        int id = item.getItemId();
++
++        //noinspection SimplifiableIfStatement
++        if (id == R.id.action_settings) {
++            return true;
++        }
++
++        return super.onOptionsItemSelected(item);
++    }
++
++    @Override
++    public void onBackPressed() {
++        // Disable going back to the MainActivity
++        moveTaskToBack(true);
++    }
++
++    @Override
++    public void onStart() {
++        super.onStart();
++
++        // ATTENTION: This was auto-generated to implement the App Indexing API.
++        // See https://g.co/AppIndexing/AndroidStudio for more information.
++        client.connect();
++        Action viewAction = Action.newAction(
++                Action.TYPE_VIEW, // TODO: choose an action type.
++                "Login Page", // TODO: Define a title for the content shown.
++                // TODO: If you have web page content that matches this app activity's content,
++                // make sure this auto-generated web page URL is correct.
++                // Otherwise, set the URL to null.
++                Uri.parse("http://host/path"),
++                // TODO: Make sure this auto-generated app deep link URI is correct.
++                Uri.parse("android-app://com.limi.andorid.vocabularyassistant/http/host/path")
++        );
++        AppIndex.AppIndexApi.start(client, viewAction);
++    }
++
++    @Override
++    public void onStop() {
++        super.onStop();
++
++        // ATTENTION: This was auto-generated to implement the App Indexing API.
++        // See https://g.co/AppIndexing/AndroidStudio for more information.
++        Action viewAction = Action.newAction(
++                Action.TYPE_VIEW, // TODO: choose an action type.
++                "Login Page", // TODO: Define a title for the content shown.
++                // TODO: If you have web page content that matches this app activity's content,
++                // make sure this auto-generated web page URL is correct.
++                // Otherwise, set the URL to null.
++                Uri.parse("http://host/path"),
++                // TODO: Make sure this auto-generated app deep link URI is correct.
++                Uri.parse("android-app://com.limi.andorid.vocabularyassistant/http/host/path")
++        );
++        AppIndex.AppIndexApi.end(client, viewAction);
++        client.disconnect();
++    }
++}
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(revision )
++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
+@@ -0,0 +1,6 @@
++<resources>
++    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
++         (such as screen margins) for screens with more than 820dp of available width. This
++         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
++    <dimen name="activity_horizontal_margin">64dp</dimen>
++</resources>
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/compiler.xml	(revision )
++++ .idea/compiler.xml	(revision )
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <resourceExtensions />
++    <wildcardResourcePatterns>
++      <entry name="!?*.java" />
++      <entry name="!?*.form" />
++      <entry name="!?*.class" />
++      <entry name="!?*.groovy" />
++      <entry name="!?*.scala" />
++      <entry name="!?*.flex" />
++      <entry name="!?*.kt" />
++      <entry name="!?*.clj" />
++      <entry name="!?*.aj" />
++    </wildcardResourcePatterns>
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="false">
++        <processorPath useClasspath="true" />
++      </profile>
++    </annotationProcessing>
++  </component>
++</project>
+\ No newline at end of file
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision )
++++ gradle/wrapper/gradle-wrapper.properties	(revision )
+@@ -0,0 +1,6 @@
++#Wed Oct 21 11:34:03 PDT 2015
++distributionBase=GRADLE_USER_HOME
++distributionPath=wrapper/dists
++zipStoreBase=GRADLE_USER_HOME
++zipStorePath=wrapper/dists
++distributionUrl=https\://services.gradle.org/distributions/gradle-2.8-all.zip
+Index: app/src/main/res/layout/content_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_main.xml	(revision )
++++ app/src/main/res/layout/content_main.xml	(revision )
+@@ -0,0 +1,15 @@
++<?xml version="1.0" encoding="utf-8"?>
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:paddingBottom="@dimen/activity_vertical_margin"
++    android:paddingLeft="@dimen/activity_horizontal_margin"
++    android:paddingRight="@dimen/activity_horizontal_margin"
++    android:paddingTop="@dimen/activity_vertical_margin"
++    app:layout_behavior="@string/appbar_scrolling_view_behavior"
++    tools:context="com.limi.andorid.vocabularyassistant.MainActivity"
++    tools:showIn="@layout/activity_main">
++
++</RelativeLayout>
+Index: gradlew
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradlew	(revision )
++++ gradlew	(revision )
+@@ -0,0 +1,160 @@
++#!/usr/bin/env bash
++
++##############################################################################
++##
++##  Gradle start up script for UN*X
++##
++##############################################################################
++
++# Add default JVM options here. You can also use JAVA_OPTS and GRADLE_OPTS to pass JVM options to this script.
++DEFAULT_JVM_OPTS=""
++
++APP_NAME="Gradle"
++APP_BASE_NAME=`basename "$0"`
++
++# Use the maximum available, or set MAX_FD != -1 to use that value.
++MAX_FD="maximum"
++
++warn ( ) {
++    echo "$*"
++}
++
++die ( ) {
++    echo
++    echo "$*"
++    echo
++    exit 1
++}
++
++# OS specific support (must be 'true' or 'false').
++cygwin=false
++msys=false
++darwin=false
++case "`uname`" in
++  CYGWIN* )
++    cygwin=true
++    ;;
++  Darwin* )
++    darwin=true
++    ;;
++  MINGW* )
++    msys=true
++    ;;
++esac
++
++# Attempt to set APP_HOME
++# Resolve links: $0 may be a link
++PRG="$0"
++# Need this for relative symlinks.
++while [ -h "$PRG" ] ; do
++    ls=`ls -ld "$PRG"`
++    link=`expr "$ls" : '.*-> \(.*\)$'`
++    if expr "$link" : '/.*' > /dev/null; then
++        PRG="$link"
++    else
++        PRG=`dirname "$PRG"`"/$link"
++    fi
++done
++SAVED="`pwd`"
++cd "`dirname \"$PRG\"`/" >/dev/null
++APP_HOME="`pwd -P`"
++cd "$SAVED" >/dev/null
++
++CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
++
++# Determine the Java command to use to start the JVM.
++if [ -n "$JAVA_HOME" ] ; then
++    if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
++        # IBM's JDK on AIX uses strange locations for the executables
++        JAVACMD="$JAVA_HOME/jre/sh/java"
++    else
++        JAVACMD="$JAVA_HOME/bin/java"
++    fi
++    if [ ! -x "$JAVACMD" ] ; then
++        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++    fi
++else
++    JAVACMD="java"
++    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
++
++Please set the JAVA_HOME variable in your environment to match the
++location of your Java installation."
++fi
++
++# Increase the maximum file descriptors if we can.
++if [ "$cygwin" = "false" -a "$darwin" = "false" ] ; then
++    MAX_FD_LIMIT=`ulimit -H -n`
++    if [ $? -eq 0 ] ; then
++        if [ "$MAX_FD" = "maximum" -o "$MAX_FD" = "max" ] ; then
++            MAX_FD="$MAX_FD_LIMIT"
++        fi
++        ulimit -n $MAX_FD
++        if [ $? -ne 0 ] ; then
++            warn "Could not set maximum file descriptor limit: $MAX_FD"
++        fi
++    else
++        warn "Could not query maximum file descriptor limit: $MAX_FD_LIMIT"
++    fi
++fi
++
++# For Darwin, add options to specify how the application appears in the dock
++if $darwin; then
++    GRADLE_OPTS="$GRADLE_OPTS \"-Xdock:name=$APP_NAME\" \"-Xdock:icon=$APP_HOME/media/gradle.icns\""
++fi
++
++# For Cygwin, switch paths to Windows format before running java
++if $cygwin ; then
++    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
++    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
++    JAVACMD=`cygpath --unix "$JAVACMD"`
++
++    # We build the pattern for arguments to be converted via cygpath
++    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
++    SEP=""
++    for dir in $ROOTDIRSRAW ; do
++        ROOTDIRS="$ROOTDIRS$SEP$dir"
++        SEP="|"
++    done
++    OURCYGPATTERN="(^($ROOTDIRS))"
++    # Add a user-defined pattern to the cygpath arguments
++    if [ "$GRADLE_CYGPATTERN" != "" ] ; then
++        OURCYGPATTERN="$OURCYGPATTERN|($GRADLE_CYGPATTERN)"
++    fi
++    # Now convert the arguments - kludge to limit ourselves to /bin/sh
++    i=0
++    for arg in "$@" ; do
++        CHECK=`echo "$arg"|egrep -c "$OURCYGPATTERN" -`
++        CHECK2=`echo "$arg"|egrep -c "^-"`                                 ### Determine if an option
++
++        if [ $CHECK -ne 0 ] && [ $CHECK2 -eq 0 ] ; then                    ### Added a condition
++            eval `echo args$i`=`cygpath --path --ignore --mixed "$arg"`
++        else
++            eval `echo args$i`="\"$arg\""
++        fi
++        i=$((i+1))
++    done
++    case $i in
++        (0) set -- ;;
++        (1) set -- "$args0" ;;
++        (2) set -- "$args0" "$args1" ;;
++        (3) set -- "$args0" "$args1" "$args2" ;;
++        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
++        (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
++        (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
++        (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;
++        (8) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" ;;
++        (9) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" "$args7" "$args8" ;;
++    esac
++fi
++
++# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
++function splitJvmOpts() {
++    JVM_OPTS=("$@")
++}
++eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
++JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
++
++exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision )
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -0,0 +1,42 @@
++<?xml version="1.0" encoding="utf-8"?>
++<manifest xmlns:android="http://schemas.android.com/apk/res/android"
++    package="com.limi.andorid.vocabularyassistant" >
++
++    <application
++        android:allowBackup="true"
++        android:icon="@mipmap/ic_launcher"
++        android:label="@string/app_name"
++        android:supportsRtl="true"
++        android:theme="@style/AppTheme">
++        <activity
++            android:name=".MainActivity"
++            android:label="@string/app_name"
++            android:theme="@style/AppTheme.NoActionBar" >
++            <intent-filter>
++                <action android:name="android.intent.action.MAIN" />
++
++                <category android:name="android.intent.category.LAUNCHER" />
++            </intent-filter>
++        </activity>
++        <activity
++            android:name=".LoginActivity"
++            android:label="@string/app_name"
++            android:theme="@style/AppTheme_Dark" >
++        </activity>
++        <activity
++            android:name=".SignupActivity"
++            android:label="@string/app_name"
++            android:parentActivityName=".LoginActivity"
++            android:theme="@style/AppTheme_Dark" >
++            <meta-data
++                android:name="android.support.PARENT_ACTIVITY"
++                android:value="com.limi.andorid.vocabularyassistant.LoginActivity" />
++        </activity>
++        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
++             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
++        <meta-data
++            android:name="com.google.android.gms.version"
++            android:value="@integer/google_play_services_version" />
++    </application>
++
++</manifest>
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision )
++++ app/proguard-rules.pro	(revision )
+@@ -0,0 +1,17 @@
++# Add project specific ProGuard rules here.
++# By default, the flags in this file are appended to flags specified
++# in /Users/limi/Library/Android/sdk/tools/proguard/proguard-android.txt
++# You can edit the include path and order by changing the proguardFiles
++# directive in build.gradle.
++#
++# For more details, see
++#   http://developer.android.com/guide/developing/tools/proguard.html
++
++# Add any project specific keep options here:
++
++# If your project uses WebView with JS, uncomment the following
++# and specify the fully qualified class name to the JavaScript interface
++# class:
++#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
++#   public *;
++#}
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision )
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -0,0 +1,16 @@
++<resources>
++    <string name="app_name">Vocabulary Assistant</string>
++    <string name="action_settings">Settings</string>
++    <string name="prompt_email">E-mail</string>
++    <string name="prompt_password">Password</string>
++    <string name="action_sign_in_short">Login</string>
++    <string name="action_sign_in">Log in</string>
++    <string name="content_singup">No account yet? Create one</string>
++    <string name="error_field_required">This field is required.</string>
++    <string name="error_invalid_email">The email address is invalid.</string>
++    <string name="error_password_length">Must between 6 and 16 characters</string>
++    <string name="action_sign_up">Sing Up</string>
++    <string name="content_login">Have account? Log in</string>
++    <string name="prompt_name">Name</string>
++    <string name="error_invalid_name">The filed can only cotains alphabet and space blank</string>
++</resources>
+Index: .idea/copyright/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/copyright/profiles_settings.xml	(revision )
++++ .idea/copyright/profiles_settings.xml	(revision )
+@@ -0,0 +1,3 @@
++<component name="CopyrightManager">
++  <settings default="" />
++</component>
+\ No newline at end of file
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision )
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -0,0 +1,36 @@
++<?xml version="1.0" encoding="utf-8"?>
++<resources>
++    <color name="colorPrimary">#3F51B5</color>
++    <color name="colorPrimaryDark">#303F9F</color>
++    <color name="colorAccent">#FF4081</color>
++
++<!--Orange Blue-->
++    <!--<color name="primary">#FF5722</color>-->
++    <!--<color name="primary_dark">#E64A19</color>-->
++    <!--<color name="primary_light">#FFCCBC</color>-->
++    <!--<color name="accent">#03A9F4</color>-->
++    <!--<color name="primary_text">#212121</color>-->
++    <!--<color name="secondary_text">#727272</color>-->
++    <!--<color name="icons">#FFFFFF</color>-->
++    <!--<color name="divider">#B6B6B6</color>-->
++
++    <!--Yellow Blue-->
++    <color name="primary">#CDDC39</color>
++    <color name="primary_dark">#AFB42B</color>
++    <color name="primary_light">#F0F4C3</color>
++    <color name="accent">#03A9F4</color>
++    <color name="primary_text">#212121</color>
++    <color name="secondary_text">#727272</color>
++    <color name="icons">#212121</color>
++    <color name="divider">#B6B6B6</color>
++
++    <color name="black">#000000</color>
++    <color name="jet">#222222</color>
++    <color name="oil">#333333</color>
++    <color name="monsoon">#777777</color>
++    <color name="jumbo">#888888</color>
++    <color name="aluminum">#999999</color>
++    <color name="base">#AAAAAA</color>
++    <color name="iron">#CCCCCC</color>
++    <color name="white">#FFFFFF</color>
++</resources>
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(revision )
++++ .idea/vcs.xml	(revision )
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(revision )
++++ .idea/modules.xml	(revision )
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/VocabularyAssistant.iml" filepath="$PROJECT_DIR$/VocabularyAssistant.iml" />
++      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision )
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -0,0 +1,49 @@
++<resources>
++
++    <!-- Base application theme. -->
++    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
++        <!--Customize your theme here. -->
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++
++        <!--<item name="android:windowBackground">@color/primary</item>-->
++
++        <!--<item name="colorPrimary">@color/primary</item>-->
++        <!--<item name="colorPrimaryDark">@color/primary_dark</item>-->
++        <!--<item name="colorAccent">@color/accent</item>-->
++
++        <!--<item name="android:windowBackground">@color/primary</item>-->
++
++        <!--<item name="colorControlNormal">@color/iron</item>-->
++        <!--<item name="colorControlActivated">@color/white</item>-->
++        <!--<item name="colorControlHighlight">@color/white</item>-->
++        <!--<item name="android:textColorHint">@color/iron</item>-->
++
++        <!--<item name="colorButtonNormal">@color/primary_darker</item>-->
++        <!--<item name="android:colorButtonNormal">@color/primary_darker</item>-->
++    </style>
++
++    <style name="AppTheme.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++    </style>
++
++    <style name="AppTheme_Dark" parent="Theme.AppCompat.Light.NoActionBar">
++        <item name="colorPrimary">@color/colorPrimary</item>
++        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
++        <item name="colorAccent">@color/colorAccent</item>
++
++    </style>
++
++    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
++
++    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
++
++    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Dialog">
++        <item name="colorAccent">@color/white</item>
++        <item name="android:textColorPrimary">@color/iron</item>
++        <item name="android:background">@color/colorPrimary</item>
++    </style>
++
++</resources>
+Index: .idea/inspectionProfiles/Project_Default.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/Project_Default.xml	(revision )
++++ .idea/inspectionProfiles/Project_Default.xml	(revision )
+@@ -0,0 +1,10 @@
++<component name="InspectionProjectProfileManager">
++  <profile version="1.0">
++    <option name="myName" value="Project Default" />
++    <inspection_tool class="AndroidLintUnusedAttribute" enabled="false" level="WARNING" enabled_by_default="false" />
++    <inspection_tool class="LoggerInitializedWithForeignClass" enabled="false" level="WARNING" enabled_by_default="false">
++      <option name="loggerClassName" value="org.apache.log4j.Logger,org.slf4j.LoggerFactory,org.apache.commons.logging.LogFactory,java.util.logging.Logger" />
++      <option name="loggerFactoryMethodName" value="getLogger,getLogger,getLog,getLogger" />
++    </inspection_tool>
++  </profile>
++</component>
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.gradle	(revision )
++++ settings.gradle	(revision )
+@@ -0,0 +1,1 @@
++include ':app'

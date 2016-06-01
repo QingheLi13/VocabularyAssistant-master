@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/undo"
+                android:layout_width="55dp"
+                android:layout_height="35dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="0dp"
+                android:background="@mipmap/undo2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="Categories"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#ebebeb" />
+    </LinearLayout>
+
+    <!--<FrameLayout-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/TOEFL"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/layout_top"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="73dp"
+        android:layout_toLeftOf="@+id/IELTS"
+        android:layout_toStartOf="@+id/IELTS"
+        android:background="@mipmap/categoryte"
+        android:text="TOEFL"
+        android:textColor="#006633" />
+
+    <Button
+        android:id="@+id/IELTS"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/TOEFL"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="right|center_vertical"
+        android:background="@mipmap/categoryie"
+        android:text="IELTS"
+        android:textColor="#009944" />
+
+    <Button
+        android:id="@+id/GRE"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_vertical"
+        android:background="@mipmap/categoryge"
+        android:text="GRE"
+        android:textColor="#827717"
+        android:layout_above="@+id/IELTS"
+        android:layout_toRightOf="@+id/IELTS"
+        android:layout_toEndOf="@+id/IELTS" />
+    <!--</FrameLayout>-->
+</RelativeLayout>

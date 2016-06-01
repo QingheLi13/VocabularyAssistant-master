@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigationModel
+    ns="http://schemas.android.com?import=com.android.tools.idea.editors.navigation.model.*">
+    <locations class="java.util.ArrayList">
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.RecitingActivity" />
+            <point x="500" y="100" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.SelectBookActivity" />
+            <point x="548" y="148" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.SummaryActivity" />
+            <point x="596" y="200" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.SignupActivity" />
+            <point x="648" y="248" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.LoginActivity" />
+            <point x="700" y="300" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.MainActivity" />
+            <point x="748" y="348" />
+        </statePointEntry>
+        <statePointEntry>
+            <state class="com.android.tools.idea.editors.navigation.model.ActivityState"
+                className="com.limi.andorid.vocabularyassistant.acti.ViewFavWord" />
+            <point x="800" y="400" />
+        </statePointEntry>
+    </locations>
+</navigationModel>

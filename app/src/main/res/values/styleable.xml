@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ColorArcProgressBar">
+        <attr name="back_color" format="color" />
+        <attr name="front_color1" format="color" />
+        <attr name="front_color2" format="color" />
+        <attr name="front_color3" format="color" />
+        <attr name="back_width" format="dimension" />
+        <attr name="front_width" format="dimension" />
+        <attr name="is_need_title" format="boolean" />
+        <attr name="is_need_content" format="boolean" />
+        <attr name="is_need_unit" format="boolean" />
+        <attr name="is_need_dial" format="boolean" />
+        <attr name="string_title" format="string" />
+        <attr name="string_unit" format="string" />
+        <attr name="total_engle" format="integer" />
+        <attr name="current_value" format="float" />
+        <attr name="max_value" format="float" />
+
+    </declare-styleable>
+
+    <declare-styleable name="EasySlidingTabs">
+        <attr name="easyIndicatorColor" format="color" />
+        <attr name="easyUnderlineColor" format="color" />
+        <attr name="easyTabTextColor" format="color" />
+        <attr name="easySelectedTagTextColor" format="color" />
+        <attr name="easyDividerColor" format="color" />
+        <attr name="easyIndicatorHeight" format="dimension" />
+        <attr name="easyUnderlineHeight" format="dimension" />
+        <attr name="easyDividerPadding" format="dimension" />
+        <attr name="easyTabPaddingLeftRight" format="dimension" />
+        <attr name="easyTabBackground" format="reference" />
+        <attr name="easyScrollOffset" format="dimension" />
+        <attr name="easyShouldExpand" format="boolean" />
+        <attr name="easyTextAllCaps" format="boolean" />
+        <attr name="easyIndicatorDrawable" format="reference" />
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_top"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/test_quit"
+                android:layout_width="55dp"
+                android:layout_height="35dp"
+                android:layout_gravity="left|center_vertical"
+                android:layout_marginLeft="0dp"
+                android:background="@mipmap/quit" />
+
+            <TextView
+                android:id="@+id/test_meaning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="Meaning Test"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar_review"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="7.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/layout_top"
+        android:max="100"
+        android:progress="80"
+        android:progressDrawable="@drawable/progressbar"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/meaning1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/linearLayout2"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textColor="#827717"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/meaning2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/meaning1"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textColor="#827717"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/meaning3"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/meaning2"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textColor="#827717"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/meaning4"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/meaning3"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:textColor="#827717"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/meaning5"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@+id/meaning4"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:text="I don't know!"
+            android:textAllCaps="false"
+            android:textColor="#827717"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/layout_top"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="54dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+
+            <TextView
+                android:id="@+id/meaningWord"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="adj. 熟知的： up to a particular standard or level especially of knowledge of recent developments"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/next_button_m"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:layout_alignEnd="@+id/linearLayout3"
+        android:layout_alignRight="@+id/linearLayout3"
+        android:layout_below="@+id/linearLayout4"
+        android:layout_gravity="right|center_vertical"
+        android:background="@mipmap/next_button"
+        android:text="Next"
+        android:textSize="20sp" />
+</RelativeLayout>
+
